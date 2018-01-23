@@ -11,6 +11,5 @@ export const receiveTables = (tables) => ({
 export const fetchTables = () => dispatch => {
   return TableApiUtil.fetchTables()
                      .then((tables) => dispatch(receiveTables(tables)),
-                      // (errors) => dispatch(receiveErrors(errors.responseJSON))
                     );
 };
