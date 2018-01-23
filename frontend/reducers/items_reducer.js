@@ -1,4 +1,4 @@
-import {RECEIVE_ITEMS} from '../actions/item_actions';
+import { RECEIVE_ITEMS } from '../actions/item_actions';
 
 
 const ItemsReducer = (state = {}, action) => {

@@ -1,4 +1,4 @@
-import {RECEIVE_TABLES} from '../actions/table_actions';
+import { RECEIVE_TABLES } from '../actions/table_actions';
 
 
 const TablesReducer = (state = {}, action) => {
