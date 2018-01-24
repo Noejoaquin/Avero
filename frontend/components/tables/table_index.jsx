@@ -1,29 +1,33 @@
 import React from 'react';
 import { isEmpty } from 'lodash';
-
+import {TableIndexItem} from './table_index_item';
 
 class TableIndex extends React.Component {
   constructor(props){
     super(props);
-    debugger
-    this.tables = this.props.tables;
     this.fetchTables = this.props.fetchTables;
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.fetchTables()
   }
 
   render(){
     let tables;
-    if (!isEmpty(this.tables)){
-      tables = this.tables;
+    // debugger
+    // if (this.props.tables === undefined ){
+    //   return null
+    // }
+    if (!(isEmpty(this.props.tables))){
+      debugger
+      tables = this.props.tables.map((table) => {
+        return <TableIndexItem key={table.id} number={table.number}/>
+      })
     }
-    debugger
     return (
       <div>
         <h1> RENDERED </h1>
-        <ul>{ tables }</ul>
+        <ul>{tables}</ul>
       </div>
     )
   }

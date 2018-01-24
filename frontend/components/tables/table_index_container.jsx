@@ -6,7 +6,6 @@ import { fetchTables, clear } from '../../actions/table_actions'
 
 const mapStateToProps = (state, ownProps) => {
   let tables = state.entities.tables;
-  debugger
   return {
     tables
   }
