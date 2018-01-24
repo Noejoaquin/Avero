@@ -34,7 +34,7 @@ export const fetchCheck = (checkId) => dispatch => {
 
 export const createCheck = (tableId) => dispatch => {
   return CheckApiUtil.createCheck(tableId)
-                     .then((tableId) => dispatch(receiveCheck(check)),
+                     .then((check) => dispatch(receiveCheck(check)),
                     );
 };
 
