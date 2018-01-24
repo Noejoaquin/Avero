@@ -4,7 +4,7 @@ export const RECEIVE_TABLES = "RECEIVE_TABLES";
 export const RECEIVE_CHECK_ERRORS = "RECEIVE_CHECK_ERRORS";
 
 export const receiveErrors = (errors) => ({
-  type: RECEIVE_CHECK_ERRORS,
+  type: RECEIVE_TABLE_ERRORS,
   errors
 })
 
