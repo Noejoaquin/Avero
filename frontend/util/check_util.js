@@ -38,3 +38,63 @@ export const fetchCheck = (id) => (
     }
   })
 )
+
+export const addItemOnCheck = (id, itemId) => (
+  $.ajax({
+    method: 'Put',
+    data:  JSON.stringify({
+      'itemId' : itemId,
+    }),
+    url: `https://check-api.herokuapp.com/checks/${id}/addItem`,
+    headers: {
+      'Authorization': authKey,
+    },
+    error: function(e){
+        console.log(e)
+    },
+  })
+)
+
+export const voidItemOnCheck = (id, orderedItemId) => (
+  $.ajax({
+    method: 'Put',
+    data:  JSON.stringify({
+      'orderedItemId' : orderedItemId,
+    }),
+    url: `https://check-api.herokuapp.com/checks/${id}/voidItem`,
+    headers: {
+      'Authorization': authKey,
+    },
+    error: function(e){
+        console.log(e)
+    },
+  })
+)
+
+export const closeCheck = (id) => (
+  $.ajax({
+    method: 'Put',
+    data:  JSON.stringify({ }),
+    url: `https://check-api.herokuapp.com/checks/${id}/close`,
+    headers: {
+      'Authorization': authKey,
+    },
+    error: function(e){
+        console.log(e)
+    },
+  })
+)
+
+export const deleteChecks = () => (
+  $.ajax({
+    method: 'Delete',
+    data:  JSON.stringify({ }),
+    url: 'https://check-api.herokuapp.com/checks',
+    headers: {
+      'Authorization': authKey,
+    },
+    error: function(e){
+        console.log(e)
+    },
+  })
+)
