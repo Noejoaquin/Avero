@@ -21,9 +21,11 @@ class TableIndex extends React.Component {
       })
     }
     return (
-      <div className='tables-container'>
+      <div>
         <h1 className='tables-header'>Tables</h1>
-        <ul className='tables-list'>{tables}</ul>
+        <div className='tables-container'>
+          <ul className='tables-list'>{tables}</ul>
+        </div>
       </div>
     )
   }
