@@ -14,20 +14,16 @@ class TableIndex extends React.Component {
 
   render(){
     let tables;
-    // debugger
-    // if (this.props.tables === undefined ){
-    //   return null
-    // }
+
     if (!(isEmpty(this.props.tables))){
-      debugger
       tables = this.props.tables.map((table) => {
         return <TableIndexItem key={table.id} number={table.number}/>
       })
     }
     return (
-      <div>
-        <h1> RENDERED </h1>
-        <ul>{tables}</ul>
+      <div className='tables-container'>
+        <h1 className='tables-header'>Tables</h1>
+        <ul className='tables-list'>{tables}</ul>
       </div>
     )
   }

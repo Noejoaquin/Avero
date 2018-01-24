@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 
 export const TableIndexItem = ({number}) => {
   return (
-    <li>{number}</li>
+    <div className='index-item-container'>
+      <li className='index-item'>
+        {number}
+      </li>
+    </div>
   )
 }
