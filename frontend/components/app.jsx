@@ -1,10 +1,13 @@
 import React from 'react';
-
+import { Switch, Route } from 'react-router-dom';
+import TableIndexContainer from './tables/table_index_container';
 
 const App = () => (
-  <div className = 'app'>
-    <h1>AVERO</h1>
-  </div>
+  <main className = 'app'>
+    <Switch>
+      <Route path='/' component={ TableIndexContainer }/>
+    </Switch>
+  </main>
 );
 
 export default App;
