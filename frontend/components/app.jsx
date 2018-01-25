@@ -6,8 +6,8 @@ import ChecksIndexContainer from './checks/checks_index_container';
 const App = () => (
   <div className = 'app'>
     <Switch>
+      <Route exact path='/tables/:tableId/checks' component={ ChecksIndexContainer } />
       <Route path='/' component={ TableIndexContainer }/>
-      <Route path='/tables/:tableId/checks' componenet={ChecksIndexContainer} />
     </Switch>
   </div>
 );
