@@ -27,7 +27,7 @@ export const removeChecks = () => ({
 export const fetchChecks = () => dispatch => {
   return CheckApiUtil.fetchChecks()
                      .then((checks) => dispatch(receiveChecks(checks)),
-                      (errors) => dispatch(receiveErrors(errors))
+                      (errors) => dispatch(receiveErrors(errors.responseJSON))
                     );
 };
 
@@ -35,7 +35,7 @@ export const fetchChecks = () => dispatch => {
 export const fetchCheck = (checkId) => dispatch => {
   return CheckApiUtil.fetchCheck(checkId)
                      .then((check) => dispatch(receiveCheck(check)),
-                      (errors) => dispatch(receiveErrors(errors))
+                      (errors) => dispatch(receiveErrors(errors.responseJSON))
                     );
 };
 
@@ -43,34 +43,34 @@ export const fetchCheck = (checkId) => dispatch => {
 export const createCheck = (tableId) => dispatch => {
   return CheckApiUtil.createCheck(tableId)
                      .then((check) => dispatch(receiveCheck(check)),
-                      (errors) => dispatch(receiveErrors(errors))
+                      (errors) => dispatch(receiveErrors(errors.responseJSON))
                     );
 };
 
 export const addItemOnCheck = (id, itemId) => dispatch => {
   return CheckApiUtil.addItemOnCheck(id, itemId)
                      .then((check) => dispatch(receiveCheck(check)),
-                      (errors) => dispatch(receiveErrors(errors))
+                      (errors) => dispatch(receiveErrors(errors.responseJSON))
                     );
 };
 
 export const voidItemOnCheck = (id, orderedItemId) => dispatch => {
   return CheckApiUtil.voidItemOnCheck(id, orderedItemId)
                      .then((check) => dispatch(receiveCheck(check)),
-                      (errors) => dispatch(receiveErrors(errors))
+                      (errors) => dispatch(receiveErrors(errors.responseJSON))
                     );
 };
 
 export const closeCheck = (checkId) => dispatch => {
   return CheckApiUtil.closeCheck(checkId)
                      .then((check) => dispatch(receiveCheck(check)),
-                      (errors) => dispatch(receiveErrors(errors))
+                      (errors) => dispatch(receiveErrors(errors.responseJSON))
                     );
 };
 
 export const deleteChecks = () => dispatch => {
   return CheckApiUtil.deleteChecks()
                      .then((checks) => dispatch(removeChecks(checks)),
-                      (errors) => dispatch(receiveErrors(errors))
+                      (errors) => dispatch(receiveErrors(errors.responseJSON))
                     );
 };

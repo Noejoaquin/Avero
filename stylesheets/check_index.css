@@ -1,4 +1,19 @@
 .check-index-header {
   font-size: 40px;
   color: red;
+  display: flex;
+  justify-content: center;
+}
+
+.createCheck {
+
+}
+
+.check-index-item {
+  display: flex;
+  justify-content: space-around;
+  width: 500px;
+  height: 50px;
+  border: 1px solid black;
+  align-items: center;
 }
