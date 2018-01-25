@@ -17,7 +17,7 @@ class TableIndex extends React.Component {
 
     if (!(isEmpty(this.props.tables))){
       tables = this.props.tables.map((table) => {
-        return <TableIndexItem key={table.id} number={table.number}/>
+        return <TableIndexItem key={table.id} id={table.id} number={table.number}/>
       })
     }
     return (
