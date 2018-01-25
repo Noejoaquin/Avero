@@ -5,8 +5,8 @@
   justify-content: center;
 }
 
-.createCheck {
-
+.check-list {
+  height: 500px;
 }
 
 .check-index-item {
@@ -16,4 +16,15 @@
   height: 50px;
   border: 1px solid black;
   align-items: center;
+}
+
+.index-show-container {
+  display: flex;
+  justify-content: center;
+}
+
+.holder-for-show {
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
 }

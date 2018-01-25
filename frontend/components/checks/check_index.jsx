@@ -1,5 +1,7 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+import CheckShowContainer from './check_show_container';
+
 
 class CheckIndex extends React.Component {
   constructor(props){
@@ -24,10 +26,6 @@ class CheckIndex extends React.Component {
     this.closeCheck(id)
   }
 
-  // getCheck(){
-  //   this.fetchCheck()
-  // }
-
   render(){
     let checks = this.props.checks.map( (check) => {
       let status = check.closed === false ? 'OPEN' : 'CLOSED'
@@ -38,8 +36,8 @@ class CheckIndex extends React.Component {
         close = <li></li>
       }
       return (
-        <div key={check.id} id={status} className='check-index-item'>
-          <Link to={`/tables/${this.tableId}/checks/${check.id}`}>
+        <Link to={`/tables/${check.tableId}/checks/${check.id}`}><div key={check.id} id={status} className='check-index-item'>
+
             <div className='check'>
               <li >{check.id}</li>
             </div>
@@ -47,19 +45,22 @@ class CheckIndex extends React.Component {
               <li>Status: {status}</li>
               {close}
             </div>
-          </Link>
-        </div>
+
+        </div></Link>
       )
     })
-    // debugger
     return (
       <div>
         <h1 className='check-index-header'>CHECKS</h1>
         <button className='create-check' onClick={this.handleCreateCheck}>Open a new Check</button>
-        <ul>
-          { checks }
-        </ul>
-        <Route path="/tables/:tableId/checks/:checkId" component={PokemonDetailContainer} />
+        <div className='index-show-container'>
+          <ul className='check-list'>
+            { checks }
+          </ul>
+          <div className='holder-for-show'>
+            <Route exact path="/tables/:tableId/checks/:checkId" component={CheckShowContainer} />
+          </div>
+        </div>
       </div>
     )
   }

@@ -1,25 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import CheckIndex from './check_index';
-import { fetchChecks, createCheck, closeCheck } from '../../actions/check_actions'
+import CheckShow from './check_show';
+import { fetchChecks, createCheck, closeCheck, fetchCheck } from '../../actions/check_actions'
 
 
 const mapStateToProps = (state, ownProps) => {
-  let allChecks = Object.keys(state.entities.checks).map(id => state.entities.checks[id])
+  let checkId = ownProps.location.pathname.split('/')[4]
+  debugger
+  let check = state.entities.checks[checkId]
   let tableId = ownProps.location.pathname.split('/')[2]
-  let checks = allChecks.filter( check => check.tableId === tableId)
   let errors = state.errors.checks
+  // debugger
   return {
-    checks,
-    tableId,
-    errors
+    check,
   }
 }
 
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchChecks: () => dispatch(fetchChecks()),
+    fetchCheck: (tableId) => dispatch(fetchCheck(tableId)),
     createCheck: (tableId) => dispatch(createCheck(tableId)),
     closeCheck: (id) => dispatch(closeCheck(id)),
     clearErrors: () => dispatch(clearErrors())
@@ -27,4 +27,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CheckIndex)
+export default connect(mapStateToProps, mapDispatchToProps)(CheckShow)
