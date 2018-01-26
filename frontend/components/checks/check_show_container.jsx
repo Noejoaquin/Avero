@@ -6,7 +6,6 @@ import { fetchChecks, createCheck, closeCheck, fetchCheck } from '../../actions/
 
 const mapStateToProps = (state, ownProps) => {
   let checkId = ownProps.location.pathname.split('/')[4]
-  debugger
   let check = state.entities.checks[checkId]
   let tableId = ownProps.location.pathname.split('/')[2]
   let errors = state.errors.checks
