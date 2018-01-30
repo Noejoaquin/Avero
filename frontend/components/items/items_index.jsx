@@ -11,16 +11,9 @@ class ItemIndex extends React.Component {
     this.handleItemSelection = this.handleItemSelection.bind(this);
   }
 
-  componentDidMount(){
-    this.fetchItems()
-  }
-
   handleItemSelection(checkId, itemId){
-    debugger
     this.addItemOnCheck(checkId, itemId)
   }
-
-  // onClick={() => this.handleItemSelection(this.props.checkId ,item.id)}
 
   render(){
     // debugger
