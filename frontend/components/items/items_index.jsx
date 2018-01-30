@@ -8,11 +8,12 @@ class ItemIndex extends React.Component {
     super(props);
     this.fetchItems = this.props.fetchItems;
     this.addItemOnCheck = this.props.addItemOnCheck;
+    this.fetchCheck = this.props.fetchCheck;
     this.handleItemSelection = this.handleItemSelection.bind(this);
   }
 
   handleItemSelection(checkId, itemId){
-    this.addItemOnCheck(checkId, itemId)
+    this.addItemOnCheck(checkId, itemId).then(() => this.fetchCheck(this.props.checkId))
   }
 
   render(){

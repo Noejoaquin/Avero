@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ItemIndex from './items_index';
 import { fetchItems } from '../../actions/item_actions';
-import { addItemOnCheck } from '../../actions/check_actions';
+import { addItemOnCheck, fetchCheck } from '../../actions/check_actions';
 
 const mapStateToProps = (state, ownProps) => {
   // debugger
@@ -20,6 +20,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchItems: () => dispatch(fetchItems()),
+    fetchCheck: (id) => dispatch(fetchCheck(id)),
     addItemOnCheck: (checkId, itemId) => dispatch(addItemOnCheck(checkId, itemId))
   }
 }
