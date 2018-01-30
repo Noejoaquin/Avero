@@ -17,7 +17,6 @@ class ItemIndex extends React.Component {
   }
 
   render(){
-    // debugger
     let items;
     if (this.props.items.toString() === "[object Object]") {
       return null

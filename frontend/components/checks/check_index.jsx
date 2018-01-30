@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import CheckShowContainer from './check_show_container';
-
+import { ErrorModal } from '../errors/error_modal';
 
 class CheckIndex extends React.Component {
   constructor(props){
@@ -10,6 +10,7 @@ class CheckIndex extends React.Component {
     this.closeCheck = this.props.closeCheck;
     this.tableId = this.props.tableId;
     this.checks = this.props.checks;
+    this.errors = this.props.errors;
     this.createCheck = this.props.createCheck;
     this.handleCreateCheck = this.handleCreateCheck.bind(this);
     this.handleCloseCheck = this.handleCloseCheck.bind(this);
@@ -28,6 +29,18 @@ class CheckIndex extends React.Component {
   }
 
   render(){
+    let error;
+    if (this.props.errors.Name) {
+      debugger
+      window.addEventListener('click', function(e) {
+        let modal = document.getElementsByClassName('error-modal')[0]
+        if (e.target == modal) {
+          modal.style.display = 'none'
+        }
+      })
+      //render the error modal
+      error =  <ErrorModal description={this.props.errors.Description}/>
+    }
     let checks = this.props.checks.map( (check) => {
       let status = check.closed === false ? 'OPEN' : 'CLOSED'
       let close;
@@ -50,6 +63,7 @@ class CheckIndex extends React.Component {
         </div></Link>
       )
     })
+    // <ErrorModal description={this.props.errors ? this.props.errors.Description : ''}/>
     return (
       <div>
         <h1 className='check-index-header'>CHECKS</h1>
@@ -62,6 +76,7 @@ class CheckIndex extends React.Component {
             <Route exact path="/tables/:tableId/checks/:checkId" component={CheckShowContainer} />
           </div>
         </div>
+        {error}
       </div>
     )
   }
