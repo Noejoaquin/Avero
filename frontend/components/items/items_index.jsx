@@ -24,14 +24,12 @@ class ItemIndex extends React.Component {
       items = this.props.items.map (item => {
         return <ItemIndexItem itemId={item.id} name={item.name} price={item.price} />
       })
-      debugger
+      // debugger
     }
     return (
-      <div>
-        <ul>
+        <ul className='item-list'>
           {items}
         </ul>
-      </div>
     )
   }
 }

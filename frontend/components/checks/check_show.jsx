@@ -22,8 +22,18 @@ class CheckShow extends React.Component {
   }
 
   toggleModal(){
-// ...contains...
-    debugger
+    let modal = document.getElementsByClassName('item-modal')[0]
+    if (modal.classList.contains('showing')){
+      modal.style.display = 'none'
+    } else {
+      window.addEventListener('click', function(e) {
+        if (e.target == modal) {
+          modal.style.display = 'none'
+        }
+      })
+      modal.style.display = 'block'
+    }
+
   }
 
   render(){
