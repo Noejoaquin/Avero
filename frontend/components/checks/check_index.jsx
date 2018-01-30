@@ -32,12 +32,12 @@ class CheckIndex extends React.Component {
       let status = check.closed === false ? 'OPEN' : 'CLOSED'
       let close;
       if (status === 'OPEN'){
-         close = <li key={check.id}><button className='close-check-button' onClick={() => this.handleCloseCheck(check.id)}>Close Check</button></li>
+         close = <li><button className='close-check-button' onClick={() => this.handleCloseCheck(check.id)}>Close Check</button></li>
       } else {
         close = <li></li>
       }
       return (
-        <Link to={`/tables/${check.tableId}/checks/${check.id}`}><div id={status} className='check-index-item'>
+        <Link to={`/tables/${check.tableId}/checks/${check.id}`} key={check.id}><div id={status} className='check-index-item'>
 
             <div className='check'>
               <li >{check.id}</li>

@@ -47,7 +47,7 @@ class CheckShow extends React.Component {
     }
   }
 
-  createCheckItemList(items){
+  createCheckItemList(items, status){
     let orderedItems;
     if (items === undefined){
       return undefined
@@ -56,12 +56,13 @@ class CheckShow extends React.Component {
       for (let i = 0; i < items.length; i++){
         for (let j = 0; j < this.props.items.length; j++){
           if (items[i].itemId === this.props.items[j].id){
-            // <li onClick={items[i].voided === false ? () => this.handleVoidItem(checkId, orderedItemId) : ''}></li>
             orderedItems.push(
-              <ul>
+              <ul key={items[i].id}>
                 <li>{this.props.items[j].name}</li>
                 <li>${this.props.items[j].price}</li>
-                {items[i].voided === false ? <li onClick={() => this.handleVoidItem(this.props.checkId, items[i].id)}>Void Item</li> : <li>Voided</li>}
+                {items[i].voided === false && status === 'open' ? <li onClick={() => this.handleVoidItem(this.props.checkId, items[i].id)}>Void Item</li> : <li></li>}
+                {items[i].voided === true && status === 'open' ? <li onClick={() => this.handleVoidItem(this.props.checkId, items[i].id)}>Voided</li> : <li></li>}
+                {status === 'closed' && items[i].voided === true ? <li>Voided</li> : <li></li>}
               </ul>
             )
           }
@@ -75,27 +76,39 @@ class CheckShow extends React.Component {
     if (this.props.check === undefined){
       return null
     } else {
-        let orderedItems = this.createCheckItemList(this.props.check.orderedItems)
         if (this.props.check.closed === true ){
+          let orderedItems = this.createCheckItemList(this.props.check.orderedItems, 'closed')
+          debugger
           return (
             <div id={status} key={this.props.check.id} className='check-index-item-show'>
-              <li>
-                {this.props.check.id}
-              </li>
-              <li>
-                {this.props.check.tableId}
-              </li>
-              <li>
-                {this.props.check.closed === false ? 'OPEN' : 'CLOSED'}
-              </li>
+              <ul>
+                <li>
+                  {this.props.check.id}
+                </li>
+                <li>
+                  {this.props.check.tableId}
+                </li>
+                <li>
+                  {this.props.check.closed === false ? 'OPEN' : 'CLOSED'}
+                </li>
+              </ul>
+              <ul>
                 {orderedItems}
-              <li>
-              </li>
+              </ul>
+              <ul>
+                <li>
+                  Tip: {this.props.check.tip}
+                </li>
+                <li>
+                  Tax: {this.props.check.tax}
+                </li>
+              </ul>
             </div>
           )
         } else {
           // {this.props.check.orderedItems && this.props.check.orderedItems.length === 0 ? 'NO ITEMS ON THIS CHECK' : this.props.check.orderedItems}
 
+          let orderedItems = this.createCheckItemList(this.props.check.orderedItems, 'open')
           return (
             <div id={status} key={this.props.check.id} className='check-index-item-show'>
               <li>

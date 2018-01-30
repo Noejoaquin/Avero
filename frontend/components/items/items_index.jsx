@@ -22,8 +22,8 @@ class ItemIndex extends React.Component {
     if (this.props.items.toString() === "[object Object]") {
       return null
     } else {
-      items = this.props.items.map (item => {
-        return <ItemIndexItem handleItemSelection={this.handleItemSelection} checkId={this.props.checkId} itemId={item.id} name={item.name} price={item.price} />
+      items = this.props.items.map ((item, i) => {
+        return <ItemIndexItem key={i} handleItemSelection={this.handleItemSelection} checkId={this.props.checkId} itemId={item.id} name={item.name} price={item.price} />
       })
     }
     return (
