@@ -11,6 +11,7 @@ class CheckIndex extends React.Component {
     this.tableId = this.props.tableId;
     this.checks = this.props.checks;
     this.errors = this.props.errors;
+    this.clearErrors = this.props.clearErrors;
     this.createCheck = this.props.createCheck;
     this.handleCreateCheck = this.handleCreateCheck.bind(this);
     this.handleCloseCheck = this.handleCloseCheck.bind(this);
@@ -32,10 +33,12 @@ class CheckIndex extends React.Component {
     let error;
     if (this.props.errors.Name) {
       debugger
+      let that = this
       window.addEventListener('click', function(e) {
         let modal = document.getElementsByClassName('error-modal')[0]
         if (e.target == modal) {
           modal.style.display = 'none'
+          that.props.clearErrors()
         }
       })
       //render the error modal
@@ -63,7 +66,6 @@ class CheckIndex extends React.Component {
         </div></Link>
       )
     })
-    // <ErrorModal description={this.props.errors ? this.props.errors.Description : ''}/>
     return (
       <div>
         <h1 className='check-index-header'>CHECKS</h1>

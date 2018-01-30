@@ -4,10 +4,15 @@ export const RECEIVE_CHECKS = "RECEIVE_CHECKS";
 export const RECEIVE_CHECK = 'RECEIVE_CHECK';
 export const REMOVE_CHECKS = 'REMOVE_CHECKS';
 export const RECEIVE_CHECK_ERRORS = "RECEIVE_CHECK_ERRORS";
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 export const receiveErrors = (errors) => ({
   type: RECEIVE_CHECK_ERRORS,
   errors
+})
+
+export const clearErrors = () => ({
+  type: CLEAR_ERRORS
 })
 
 export const receiveChecks = (checks) => ({
