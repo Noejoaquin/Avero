@@ -78,7 +78,6 @@ class CheckShow extends React.Component {
     } else {
         if (this.props.check.closed === true ){
           let orderedItems = this.createCheckItemList(this.props.check.orderedItems, 'closed')
-          debugger
           return (
             <div id={status} key={this.props.check.id} className='check-index-item-show'>
               <ul>
@@ -106,8 +105,6 @@ class CheckShow extends React.Component {
             </div>
           )
         } else {
-          // {this.props.check.orderedItems && this.props.check.orderedItems.length === 0 ? 'NO ITEMS ON THIS CHECK' : this.props.check.orderedItems}
-
           let orderedItems = this.createCheckItemList(this.props.check.orderedItems, 'open')
           return (
             <div id={status} key={this.props.check.id} className='check-index-item-show'>

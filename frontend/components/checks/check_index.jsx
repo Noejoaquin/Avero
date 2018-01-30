@@ -32,7 +32,6 @@ class CheckIndex extends React.Component {
   render(){
     let error;
     if (this.props.errors.Name) {
-      debugger
       let that = this
       window.addEventListener('click', function(e) {
         let modal = document.getElementsByClassName('error-modal')[0]

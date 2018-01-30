@@ -4,8 +4,8 @@ html{
 }
 
 .app {
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
   font-family: 'Roboto Condensed', sans-serif;
 }
 

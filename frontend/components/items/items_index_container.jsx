@@ -5,7 +5,6 @@ import { fetchItems } from '../../actions/item_actions';
 import { addItemOnCheck, voidItemOnCheck, fetchCheck } from '../../actions/check_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger
   let checkId = ownProps.checkId;
   let items = state.entities.items;
   let errors = state.errors;

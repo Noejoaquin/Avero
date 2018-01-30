@@ -7,7 +7,6 @@ import reverse from 'lodash';
 
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger
   let allChecks = Object.keys(state.entities.checks).map(id => state.entities.checks[id])
   let tableId = ownProps.location.pathname.split('/')[2]
   let checksUnordered = allChecks.filter( check => check.tableId === tableId)
