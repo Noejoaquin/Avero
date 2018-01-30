@@ -8,6 +8,7 @@ class CheckShow extends React.Component {
     this.check = this.props.check;
     this.fetchCheck = this.props.fetchCheck;
     this.fetchItems = this.props.fetchItems;
+    this.voidItemOnCheck = this.props.voidItemOnCheck;
     this.tableId = this.props.tableId;
     this.toggleModal = this.toggleModal.bind(this);
     this.createCheckItemList = this.createCheckItemList.bind(this)
@@ -26,6 +27,10 @@ class CheckShow extends React.Component {
 
   handleCloseCheck(){
     this.closeCheck(id)
+  }
+
+  handleVoidItem(checkId, orderedItemId){
+    this.voidItemOnCheck(checkId, orderedItemId).then(() => this.fetchCheck(this.props.checkId))
   }
 
   toggleModal(){
@@ -51,10 +56,12 @@ class CheckShow extends React.Component {
       for (let i = 0; i < items.length; i++){
         for (let j = 0; j < this.props.items.length; j++){
           if (items[i].itemId === this.props.items[j].id){
+            // <li onClick={items[i].voided === false ? () => this.handleVoidItem(checkId, orderedItemId) : ''}></li>
             orderedItems.push(
               <ul>
                 <li>{this.props.items[j].name}</li>
-                <li>{this.props.items[j].price}</li>
+                <li>${this.props.items[j].price}</li>
+                {items[i].voided === false ? <li onClick={() => this.handleVoidItem(this.props.checkId, items[i].id)}>Void Item</li> : <li>Voided</li>}
               </ul>
             )
           }

@@ -27,7 +27,6 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchChecks: () => dispatch(fetchChecks()),
@@ -36,6 +35,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     clearErrors: () => dispatch(clearErrors())
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckIndex)

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CheckShow from './check_show';
-import { fetchChecks, createCheck, closeCheck, fetchCheck } from '../../actions/check_actions'
+import { fetchChecks, createCheck, closeCheck, fetchCheck, voidItemOnCheck } from '../../actions/check_actions'
 import { fetchItems } from '../../actions/item_actions';
 
 
@@ -26,6 +26,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     createCheck: (tableId) => dispatch(createCheck(tableId)),
     fetchItems: () => dispatch(fetchItems()),
     closeCheck: (id) => dispatch(closeCheck(id)),
+    voidItemOnCheck: (checkId, orderedItemId) => dispatch(voidItemOnCheck(checkId, orderedItemId)),
     clearErrors: () => dispatch(clearErrors())
   }
 }
