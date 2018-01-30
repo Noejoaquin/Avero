@@ -8,7 +8,7 @@ class CheckShow extends React.Component {
     this.check = this.props.check;
     this.fetchCheck = this.props.fetchCheck;
     this.tableId = this.props.tableId;
-    this.handleAddItem = this.handleAddItem.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount(){
@@ -21,8 +21,9 @@ class CheckShow extends React.Component {
     this.closeCheck(id)
   }
 
-  handleAddItem() {
-
+  toggleModal(){
+// ...contains...
+    debugger
   }
 
   render(){
@@ -59,8 +60,11 @@ class CheckShow extends React.Component {
           </li>
             {this.props.check.orderedItems && this.props.check.orderedItems.length === 0 ? 'NO ITEMS ON THIS CHECK' : this.props.check.orderedItems}
           <li>
-            <button onClick={this.handleAddItem}>Add Item</button>
-            <ItemIndexContainer checkId={this.props.check.id}/>
+            <button onClick={this.toggleModal}>Add Item</button>
+            <div className='item-modal' >
+              <ItemIndexContainer checkId={this.props.check.id}/>
+            </div>
+
           </li>
         </div>
       )
