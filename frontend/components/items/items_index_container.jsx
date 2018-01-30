@@ -4,10 +4,12 @@ import CheckIndex from './items_index';
 import { fetchItems, addItemOnCheck } from '../../actions/check_actions'
 
 const mapStateToProps = (state, ownProps) => {
-
+  let checkId = ownProps.checkId;
+  let items = state.entities.items;
+  let errors = state.entites.errors;
   return {
-    checks,
-    tableId,
+    checkId,
+    items,
     errors
   }
 }
@@ -15,10 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchChecks: () => dispatch(fetchChecks()),
-    createCheck: (tableId) => dispatch(createCheck(tableId)),
-    closeCheck: (id) => dispatch(closeCheck(id)),
-    clearErrors: () => dispatch(clearErrors())
+    fetchItems: () => dispatch(fetchItems(checkId, itemId)),
   }
 }
 
