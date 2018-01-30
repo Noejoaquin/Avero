@@ -7,12 +7,20 @@ class ItemIndex extends React.Component {
   constructor(props){
     super(props);
     this.fetchItems = this.props.fetchItems;
+    this.addItemOnCheck = this.props.addItemOnCheck;
+    this.handleItemSelection = this.handleItemSelection.bind(this);
   }
 
   componentDidMount(){
     this.fetchItems()
   }
 
+  handleItemSelection(checkId, itemId){
+    debugger
+    this.addItemOnCheck(checkId, itemId)
+  }
+
+  // onClick={() => this.handleItemSelection(this.props.checkId ,item.id)}
 
   render(){
     // debugger
@@ -20,9 +28,8 @@ class ItemIndex extends React.Component {
     if (this.props.items.toString() === "[object Object]") {
       return null
     } else {
-      // debugger
       items = this.props.items.map (item => {
-        return <ItemIndexItem itemId={item.id} name={item.name} price={item.price} />
+        return <ItemIndexItem handleItemSelection={this.handleItemSelection} checkId={this.props.checkId} itemId={item.id} name={item.name} price={item.price} />
       })
     }
     return (

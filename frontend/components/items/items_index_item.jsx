@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-export const ItemIndexItem = ({itemId, name, price}) => {
+export const ItemIndexItem = ({itemId, name, price, handleItemSelection, checkId}) => {
   return (
-        <ul className='item-index-item'>
+        <ul onClick={() => handleItemSelection(checkId, itemId)} className='item-index-item'>
           <li className='item-name'>
             {name}
           </li>
