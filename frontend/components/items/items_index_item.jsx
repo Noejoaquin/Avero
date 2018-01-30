@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 
 export const ItemIndexItem = ({itemId, name, price}) => {
   return (
-    <div className='item-index-item-container'>
-
-        <li className='item-index-item'>
-          {name}
-          {price}
-        </li>
-
-    </div>
+        <ul className='item-index-item'>
+          <li className='item-name'>
+            {name}
+          </li>
+          <li className='item-price'>
+            Price: ${price}
+          </li>
+        </ul>
   )
 }

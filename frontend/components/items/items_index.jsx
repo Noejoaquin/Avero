@@ -24,7 +24,6 @@ class ItemIndex extends React.Component {
       items = this.props.items.map (item => {
         return <ItemIndexItem itemId={item.id} name={item.name} price={item.price} />
       })
-      // debugger
     }
     return (
         <ul className='item-list'>
