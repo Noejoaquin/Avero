@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import CheckIndex from './items_index';
-import { fetchItems, addItemOnCheck } from '../../actions/check_actions'
+import ItemIndex from './items_index';
+import { fetchItems } from '../../actions/item_actions';
+import { addItemOnCheck } from '../../actions/check_actions';
 
 const mapStateToProps = (state, ownProps) => {
+  // debugger
   let checkId = ownProps.checkId;
   let items = state.entities.items;
-  let errors = state.entites.errors;
+  let errors = state.errors;
   return {
     checkId,
     items,
@@ -17,7 +19,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchItems: () => dispatch(fetchItems(checkId, itemId)),
+    fetchItems: () => dispatch(fetchItems()),
+    addItemOnCheck: (checkId, itemId) => dispatch(addItemOnCheck(checkId, itemId))
   }
 }
 

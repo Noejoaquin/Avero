@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import ItemIndexItem from './items_idex_item';
+import { ItemIndexItem } from './items_index_item';
 
 
 class ItemIndex extends React.Component {
@@ -15,9 +15,17 @@ class ItemIndex extends React.Component {
 
 
   render(){
-    let items = this.props.items.map (item => {
-      return <ItemIndexItem itemId={item.id} name={item.name} price={item.price} />
-    })
+    // debugger
+    let items;
+    if (this.props.items.toString() === "[object Object]") {
+      return null
+    } else {
+      // debugger
+      items = this.props.items.map (item => {
+        return <ItemIndexItem itemId={item.id} name={item.name} price={item.price} />
+      })
+      debugger
+    }
     return (
       <div>
         <ul>

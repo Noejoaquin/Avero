@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import ItemIndexContainer from '../items/items_index_container';
 
 class CheckShow extends React.Component {
   constructor(props){
@@ -28,7 +29,6 @@ class CheckShow extends React.Component {
     if (this.props.check === undefined){
       return null
     } else if (this.props.check.closed === true ){
-      debugger
       return (
         <div id={status} key={this.props.check.id} className='check-index-item-show'>
           <li>
@@ -60,6 +60,7 @@ class CheckShow extends React.Component {
             {this.props.check.orderedItems && this.props.check.orderedItems.length === 0 ? 'NO ITEMS ON THIS CHECK' : this.props.check.orderedItems}
           <li>
             <button onClick={this.handleAddItem}>Add Item</button>
+            <ItemIndexContainer checkId={this.props.check.id}/>
           </li>
         </div>
       )
