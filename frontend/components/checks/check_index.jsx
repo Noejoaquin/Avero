@@ -7,6 +7,7 @@ class CheckIndex extends React.Component {
   constructor(props){
     super(props);
     this.fetchChecks= this.props.fetchChecks;
+    this.closeCheck = this.props.closeCheck;
     this.tableId = this.props.tableId;
     this.checks = this.props.checks;
     this.createCheck = this.props.createCheck;
@@ -22,7 +23,7 @@ class CheckIndex extends React.Component {
     this.createCheck(this.tableId)
   }
 
-  handleCloseCheck(){
+  handleCloseCheck(id){
     this.closeCheck(id)
   }
 
@@ -31,12 +32,12 @@ class CheckIndex extends React.Component {
       let status = check.closed === false ? 'OPEN' : 'CLOSED'
       let close;
       if (status === 'OPEN'){
-         close = <li><button className='close-check-button' onClick={() => this.handleCloseCheck(check.id)}>Close Check</button></li>
+         close = <li key={check.id}><button className='close-check-button' onClick={() => this.handleCloseCheck(check.id)}>Close Check</button></li>
       } else {
         close = <li></li>
       }
       return (
-        <Link to={`/tables/${check.tableId}/checks/${check.id}`}><div key={check.id} id={status} className='check-index-item'>
+        <Link to={`/tables/${check.tableId}/checks/${check.id}`}><div id={status} className='check-index-item'>
 
             <div className='check'>
               <li >{check.id}</li>

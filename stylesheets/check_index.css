@@ -18,6 +18,14 @@
   align-items: center;
 }
 
+.close-check-button {
+  border: 1px solid black;
+}
+
+.close-check-button:hover {
+  color: blue;
+}
+
 .index-show-container {
   display: flex;
   justify-content: center;

@@ -11,7 +11,6 @@ class CheckShow extends React.Component {
 
   componentDidMount(){
     if (this.props.check && this.props.check.orderedItems === undefined){
-      debugger
       this.fetchCheck(this.props.check.id)
     }
   }
@@ -24,7 +23,6 @@ class CheckShow extends React.Component {
     if (this.props.check === undefined){
       return null
     } else {
-      debugger
       return (
         <div id={status} key={this.props.check.id} className='check-index-item-show'>
           <li>
@@ -34,7 +32,7 @@ class CheckShow extends React.Component {
             {this.props.check.tableId}
           </li>
           <li>
-            {this.props.check.closed === 'false' ? 'OPEN' : 'CLOSED'}
+            {this.props.check.closed === false ? 'OPEN' : 'CLOSED'}
           </li>
             {this.props.check.orderedItems && this.props.check.orderedItems.length === 0 ? 'NO ITEMS ON THIS CHECK' : this.props.check.orderedItems}
           <li>
