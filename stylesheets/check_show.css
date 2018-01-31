@@ -1,5 +1,6 @@
 .basic-check-info-list {
   margin-top: 10px;
+  color: #424FA8;
 }
 
 .basic-check-info-list li {
@@ -13,11 +14,11 @@
 
 .close-check-button-show{
   margin: 0 auto;
-  color: #424FA8;
+  color: #BF0C0C;
 }
 
 .close-check-button-show:hover {
-  color: #BF0C0C;
+  color: #424FA8;
   transition: all .4s ease;
   -webkit-transition: all .4s ease;
 }
@@ -26,6 +27,7 @@
   border: 1px solid #686970;
   padding: 4px;
   margin-left: 33px;
+  color: #424FA8;
 }
 
 .add-item-button:hover {
@@ -44,14 +46,22 @@
 .closed-check-items {
   border-bottom: 1px solid #686970;
 }
+
+.item-information {
+  color: #424FA8;
+}
 .item-information li {
   padding:1em;
   width:24%;
   display:table-cell;
 }
 
-.void-item-button:hover {
+.void-item-button {
   color: #BF0C0C;
+}
+
+.void-item-button:hover {
+  color: #424FA8;
   transition: all .4s ease;
   -webkit-transition: all .4s ease;
 }

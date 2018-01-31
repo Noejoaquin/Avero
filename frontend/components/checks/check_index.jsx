@@ -57,16 +57,21 @@ class CheckIndex extends React.Component {
         <Link to={`/tables/${check.tableId}/checks/${check.id}`} key={check.id}><div id={status} className='check-index-item'>
 
             <div className='check'>
-              <li >{check.id}</li>
+              <li className='first-line'>Check ID: {check.id}</li>
+              <li>Date Created: {new Date(check.dateCreated).toString().split('-')[0]}</li>
             </div>
             <div>
-              <li>Status: {status}</li>
+              <li className='first-line'>Status: {status}</li>
               {close}
             </div>
 
         </div></Link>
       )
     })
+
+    if (checks.length === 0) {
+      checks = <li className='empty-check-list-note'>There Are Currently No Checks For This Table</li>
+    }
 
     return (
       <div className='check-index-container'>
