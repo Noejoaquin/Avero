@@ -4,7 +4,7 @@ import { NavBar } from './nav';
 
 const mapStateToProps = (state, ownProps) => {
   let path = ownProps.location.pathname
-  return { path }
+  return { path, ownProps }
 }
 
 

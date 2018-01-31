@@ -66,7 +66,7 @@ class CheckIndex extends React.Component {
         </div></Link>
       )
     })
-
+    
     return (
       <div className='check-index-container'>
         <h1 className='check-index-header'>CHECKS</h1>

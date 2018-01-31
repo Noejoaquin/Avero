@@ -79,7 +79,7 @@ class CheckShow extends React.Component {
           let orderedItems = this.createCheckItemList(this.props.check.orderedItems, 'closed')
           return (
             <div id={status} key={this.props.check.id} className='check-index-item-show'>
-              <ul>
+              <ul className='basic-check-info-list'>
                 <li>
                   {this.props.check.id}
                 </li>
@@ -90,7 +90,7 @@ class CheckShow extends React.Component {
                   {this.props.check.closed === false ? 'OPEN' : 'CLOSED'}
                 </li>
               </ul>
-              <ul>
+              <ul className='item-container'>
                 {orderedItems}
               </ul>
               <ul>
@@ -107,21 +107,23 @@ class CheckShow extends React.Component {
           let orderedItems = this.createCheckItemList(this.props.check.orderedItems, 'open')
           return (
             <div id={status} key={this.props.check.id} className='check-index-item-show'>
-              <li>
-                {this.props.check.id}
-              </li>
-              <li>
-                {this.props.check.tableId}
-              </li>
-              <li>
-                {this.props.check.closed === false ? 'OPEN' : 'CLOSED'}
-              </li>
-              <li>
+              <ul className='basic-check-info-list'>
+                <li>
+                  {this.props.check.id}
+                </li>
+                <li>
+                  {this.props.check.tableId}
+                </li>
+                <li>
+                  {this.props.check.closed === false ? 'OPEN' : 'CLOSED'}
+                </li>
+              </ul>
+              <div className='item-container'>
                 <button onClick={this.toggleModal}>Add Item</button>
                 <div className='item-modal' >
                   <ItemIndexContainer checkId={this.props.check.id}/>
                 </div>
-              </li>
+              </div>
               <li>
                 {orderedItems}
               </li>
