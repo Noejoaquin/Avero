@@ -36,11 +36,12 @@ class CheckShow extends React.Component {
 
   toggleModal(){
     let modal = document.getElementsByClassName('item-modal')[0]
+    let button = document.getElementsByClassName('item-modal-button')[0]
     if (modal.classList.contains('showing')){
       modal.style.display = 'none'
     } else {
       window.addEventListener('click', function(e) {
-        if (e.target == modal) {
+        if (e.target == modal || e.target == button) {
           modal.style.display = 'none'
         }
       })
@@ -127,6 +128,9 @@ class CheckShow extends React.Component {
               <div className='item-container'>
                 <button className='add-item-button' onClick={this.toggleModal}>Add Item</button>
                 <div className='item-modal'>
+                  <div className='modal-list exit-button-container exit-button-container-items'>
+                    <button className='modal-list exit-modal-button item-modal-button'>X</button>
+                  </div>
                   <h1 className='modal-list modal-header modal-list-header'>Menu Items</h1>
                   <ItemIndexContainer checkId={this.props.check.id}/>
                 </div>

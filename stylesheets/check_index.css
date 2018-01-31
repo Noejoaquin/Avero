@@ -53,6 +53,18 @@
   color: #BF0C0C;
 }
 
+.item-modal-button {
+  color: #8292F7;
+  background-color: #DADDF5;
+}
+
+.item-modal-button:hover {
+  color:#DADDF5;
+  background-color: #8292F7;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+}
+
 .close-check-button:hover {
   color: black;
   background-color: #BF0C0C;
@@ -72,4 +84,5 @@
   height: 500px;
   width: 600px;
   background-color: #DADDF5;
+  overflow-y: scroll;
 }

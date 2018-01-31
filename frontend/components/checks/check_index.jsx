@@ -36,7 +36,8 @@ class CheckIndex extends React.Component {
       let that = this
       window.addEventListener('click', function(e) {
         let modal = document.getElementsByClassName('error-modal')[0]
-        if (e.target == modal) {
+        let button = document.getElementsByClassName('error-modal-button')[0]
+        if (e.target == modal || e.target == button) {
           modal.style.display = 'none'
           that.props.clearErrors()
         }

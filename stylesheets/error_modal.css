@@ -27,3 +27,19 @@
 .error-list-item {
   font-size: 20px;
 }
+
+.exit-button-container-errors {
+  background-color: #F54343;
+}
+
+.error-modal-button {
+  background-color: #DADDF5;
+  color: #F54343;
+}
+
+.error-modal-button:hover {
+  background-color: #F54343;
+  color: #DADDF5;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+}

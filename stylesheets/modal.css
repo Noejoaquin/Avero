@@ -22,7 +22,23 @@
   align-items: center;
   font-size: 30px;
   letter-spacing: 1.5px;
+  border-top: none;
 }
+
+.exit-button-container {
+  height: 20px;
+  border-bottom: none;
+  padding-top: 10px;
+}
+
+.exit-modal-button {
+  height: 19px;
+  width: 14px;
+  z-index: 1;
+  position: relative;
+  left: 475px;
+}
+
 
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0}
