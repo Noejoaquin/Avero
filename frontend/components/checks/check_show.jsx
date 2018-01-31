@@ -55,6 +55,7 @@ class CheckShow extends React.Component {
     } else {
       orderedItems = []
       for (let i = 0; i < items.length; i++){
+        if (items[i].voided === true && status === 'closed') {continue}
         for (let j = 0; j < this.props.items.length; j++){
           if (items[i].itemId === this.props.items[j].id){
             orderedItems.push(
@@ -92,7 +93,7 @@ class CheckShow extends React.Component {
                   Check Status: {this.props.check.closed === false ? 'OPEN' : 'CLOSED'}
                 </li>
               </ul>
-              <ul className='ordered-items-list'>
+              <ul className='ordered-items-list closed-check-items'>
                 {orderedItems}
               </ul>
               <ul className='closed-check-details'>

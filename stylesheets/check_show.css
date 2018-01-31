@@ -13,11 +13,13 @@
 
 .close-check-button-show{
   margin: 0 auto;
-  color: red;
+  color: #424FA8;
 }
 
 .close-check-button-show:hover {
-  color: green;
+  color: #BF0C0C;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
 }
 
 .add-item-button {
@@ -39,26 +41,26 @@
   display: table;
   width: 100%;
   border-spacing:.5em;
-  border-bottom: 1px solid black;
 }
 
+.closed-check-items {
+  border-bottom: 1px solid #686970;
+}
 .item-information li {
   padding:1em;
   width:24%;
   display:table-cell;
 }
 
-/* #empty {
-  display: none;
-} */
-
 .void-item-button:hover {
-  color: red;
+  color: #BF0C0C;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
 }
 
 .closed-check-details {
   margin-left: 50px;
-  color: red;
+  color: #BF0C0C;
 }
 
 .closed-check-details li{
