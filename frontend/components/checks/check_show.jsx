@@ -56,7 +56,7 @@ class CheckShow extends React.Component {
         for (let j = 0; j < this.props.items.length; j++){
           if (items[i].itemId === this.props.items[j].id){
             orderedItems.push(
-              <ul key={items[i].id}>
+              <ul key={items[i].id} className='item-information'>
                 <li>{this.props.items[j].name}</li>
                 <li>${this.props.items[j].price}</li>
                 {items[i].voided === false && status === 'open' ? <li onClick={() => this.handleVoidItem(this.props.checkId, items[i].id)}>Void Item</li> : <li></li>}
@@ -80,17 +80,17 @@ class CheckShow extends React.Component {
           return (
             <div id={status} key={this.props.check.id} className='check-index-item-show'>
               <ul className='basic-check-info-list'>
-                <li>
-                  {this.props.check.id}
+                <li className='check-id'>
+                  Check ID: {this.props.check.id}
                 </li>
-                <li>
-                  {this.props.check.tableId}
+                <li className='check-table-id'>
+                  Check Table ID: {this.props.check.tableId}
                 </li>
-                <li>
-                  {this.props.check.closed === false ? 'OPEN' : 'CLOSED'}
+                <li className='check-status'>
+                  Check Status: {this.props.check.closed === false ? 'OPEN' : 'CLOSED'}
                 </li>
               </ul>
-              <ul className='item-container'>
+              <ul className='ordered-items-list'>
                 {orderedItems}
               </ul>
               <ul>
@@ -108,25 +108,25 @@ class CheckShow extends React.Component {
           return (
             <div id={status} key={this.props.check.id} className='check-index-item-show'>
               <ul className='basic-check-info-list'>
-                <li>
-                  {this.props.check.id}
+                <li className='check-id'>
+                  Check ID: {this.props.check.id}
                 </li>
-                <li>
-                  {this.props.check.tableId}
+                <li className='check-table-id'>
+                  Check Table ID: {this.props.check.tableId}
                 </li>
-                <li>
-                  {this.props.check.closed === false ? 'OPEN' : 'CLOSED'}
+                <li className='check-status'>
+                  Check Status: {this.props.check.closed === false ? 'OPEN' : 'CLOSED'}
                 </li>
               </ul>
               <div className='item-container'>
-                <button onClick={this.toggleModal}>Add Item</button>
+                <button className='add-item-button' onClick={this.toggleModal}>Add Item</button>
                 <div className='item-modal' >
                   <ItemIndexContainer checkId={this.props.check.id}/>
                 </div>
               </div>
-              <li>
+              <ul className='ordered-items-list'>
                 {orderedItems}
-              </li>
+              </ul>
             </div>
           )
         }

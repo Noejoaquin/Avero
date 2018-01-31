@@ -1,4 +1,36 @@
 .basic-check-info-list {
+  margin-top: 10px;
+}
+
+.basic-check-info-list li {
+  margin-bottom: 5px;
+}
+
+.check-id, .check-table-id, .check-status {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+}
+
+.add-item-button {
+  border: 1px solid #686970;
+  padding: 2px;
+}
+
+.add-item-button:hover {
+  background-color: #8292F7;
+  color: #DADDF5;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+}
+
+.item-container {
+}
+
+.ordered-items-list {
+  background-color: red;
+}
+
+.item-information {
+  display: flex;
+  justify-content: space-between;
 }
