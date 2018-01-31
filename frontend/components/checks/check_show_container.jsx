@@ -11,7 +11,6 @@ const mapStateToProps = (state, ownProps) => {
   let tableId = ownProps.location.pathname.split('/')[2]
   let errors = state.errors.checks
   let items = state.entities.items
-  // debugger
   return {
     check,
     checkId,

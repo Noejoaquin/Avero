@@ -66,14 +66,9 @@
   justify-content: center;
 }
 
-.holder-for-show {
-  width: 600px;
-  height: 500px;
-  border: 1px solid #686970;
-  margin-left:8px;
-}
-
 .check-index-item-show {
+  margin-left:8px;
+  border: 1px solid #686970;
   height: 500px;
   width: 600px;
 }

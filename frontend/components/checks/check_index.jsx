@@ -66,6 +66,7 @@ class CheckIndex extends React.Component {
         </div></Link>
       )
     })
+
     return (
       <div className='check-index-container'>
         <h1 className='check-index-header'>CHECKS</h1>
@@ -74,9 +75,7 @@ class CheckIndex extends React.Component {
           <ul className='check-list'>
             { checks }
           </ul>
-          <div className='holder-for-show'>
-            <Route exact path="/tables/:tableId/checks/:checkId" component={CheckShowContainer} />
-          </div>
+          <Route exact path="/tables/:tableId/checks/:checkId" component={CheckShowContainer} />
         </div>
         {error}
       </div>

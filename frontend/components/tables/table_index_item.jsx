@@ -6,9 +6,9 @@ export const TableIndexItem = ({id, number}) => {
   return (
     <div className='index-item-container'>
 
-        <li className='index-item'><Link to={`tables/${id}/checks`}>
+        <Link to={`tables/${id}/checks`}><li className='index-item'>
           {number}
-        </Link></li>
+        </li></Link>
 
     </div>
   )
