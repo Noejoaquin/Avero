@@ -19,7 +19,7 @@ class CheckIndex extends React.Component {
   }
 
   componentDidMount(){
-    this.fetchChecks()
+    this.fetchChecks().then( () => this.fetchTables())
   }
 
   handleCreateCheck(){
@@ -72,10 +72,10 @@ class CheckIndex extends React.Component {
     if (checks.length === 0) {
       checks = <li className='empty-check-list-note'>There Are Currently No Checks For This Table</li>
     }
-
+    // debugger
     return (
       <div className='check-index-container'>
-        <h1 className='check-index-header'>CHECKS</h1>
+        <h1 className='check-index-header'>CHECKS FOR TABLE {this.props.number}</h1>
         <button className='create-check' onClick={this.handleCreateCheck}>Open a new Check</button>
         <div className='index-show-container'>
           <ul className='check-list'>

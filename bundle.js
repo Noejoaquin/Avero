@@ -46489,6 +46489,8 @@ var _check_index2 = _interopRequireDefault(_check_index);
 
 var _check_actions = __webpack_require__(8);
 
+var _table_actions = __webpack_require__(21);
+
 var _lodash = __webpack_require__(81);
 
 var _lodash2 = _interopRequireDefault(_lodash);
@@ -46508,6 +46510,16 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   });
   var timesSorted = times.sort().reverse();
   var checks = [];
+  var tables = state.entities.tables;
+  var table = void 0;
+  var number = void 0;
+  if (tables instanceof Array) {
+    table = tables.filter(function (table) {
+      return table.id === tableId;
+    });
+    number = table[0].number;
+    // debugger
+  }
   for (var i = 0; i < timesSorted.length; i++) {
     for (var j = 0; j < timesSorted.length; j++) {
       if (times[i] === checksUnordered[j].dateCreated) {
@@ -46516,13 +46528,14 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     }
   }
   var errors = state.errors.checks;
+  // debugger
   return {
     checks: checks,
     tableId: tableId,
+    number: number,
     errors: errors
   };
 };
-// import { fetchTables } from '../../actions/table_actions';
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   return {
@@ -46532,19 +46545,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     createCheck: function createCheck(tableId) {
       return dispatch((0, _check_actions.createCheck)(tableId));
     },
-    fetchTables: function (_fetchTables) {
-      function fetchTables() {
-        return _fetchTables.apply(this, arguments);
-      }
-
-      fetchTables.toString = function () {
-        return _fetchTables.toString();
-      };
-
-      return fetchTables;
-    }(function () {
-      return dispatch(fetchTables());
-    }),
+    fetchTables: function fetchTables() {
+      return dispatch((0, _table_actions.fetchTables)());
+    },
     closeCheck: function closeCheck(id) {
       return dispatch((0, _check_actions.closeCheck)(id));
     },
@@ -46613,7 +46616,11 @@ var CheckIndex = function (_React$Component) {
   _createClass(CheckIndex, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.fetchChecks();
+      var _this2 = this;
+
+      this.fetchChecks().then(function () {
+        return _this2.fetchTables();
+      });
     }
   }, {
     key: 'handleCreateCheck',
@@ -46628,7 +46635,7 @@ var CheckIndex = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var error = void 0;
       if (this.props.errors.Name) {
@@ -46654,7 +46661,7 @@ var CheckIndex = function (_React$Component) {
             _react2.default.createElement(
               'button',
               { className: 'close-check-button', onClick: function onClick() {
-                  return _this2.handleCloseCheck(check.id);
+                  return _this3.handleCloseCheck(check.id);
                 } },
               'Close Check'
             )
@@ -46706,14 +46713,15 @@ var CheckIndex = function (_React$Component) {
           'There Are Currently No Checks For This Table'
         );
       }
-
+      // debugger
       return _react2.default.createElement(
         'div',
         { className: 'check-index-container' },
         _react2.default.createElement(
           'h1',
           { className: 'check-index-header' },
-          'CHECKS'
+          'CHECKS FOR TABLE ',
+          this.props.number
         ),
         _react2.default.createElement(
           'button',

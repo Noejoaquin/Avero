@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CheckIndex from './check_index';
 import { fetchChecks, createCheck, closeCheck, clearErrors } from '../../actions/check_actions'
-// import { fetchTables } from '../../actions/table_actions';
+import { fetchTables } from '../../actions/table_actions';
 
 import reverse from 'lodash';
 
@@ -14,6 +14,14 @@ const mapStateToProps = (state, ownProps) => {
   let times = checksUnordered.map( check => check.dateCreated )
   let timesSorted = times.sort().reverse()
   let checks = [];
+  let tables = state.entities.tables
+  let table;
+  let number;
+  if (tables instanceof Array) {
+    table = tables.filter( table => table.id === tableId)
+    number = table[0].number
+    // debugger
+  }
   for (let i = 0; i < timesSorted.length; i++ ){
     for (let j = 0; j < timesSorted.length; j ++) {
       if (times[i] === checksUnordered[j].dateCreated){
@@ -22,9 +30,11 @@ const mapStateToProps = (state, ownProps) => {
     }
   }
   let errors = state.errors.checks
+  // debugger
   return {
     checks,
     tableId,
+    number,
     errors
   }
 }
