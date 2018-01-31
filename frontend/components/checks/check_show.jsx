@@ -18,12 +18,11 @@ class CheckShow extends React.Component {
     this.fetchItems().then(() => this.fetchCheck(this.props.checkId))
   }
 
-  // componentWillUpdate(){
-  //   debugger
-  //   if (this.props.check && this.props.check.orderedItems === undefined){
-  //     this.fetchCheck(this.props.checkId)
-  //   }
-  // }
+  componentWillReceiveProps(newProps){
+    if (this.props.checkId !== newProps.checkId){
+      this.fetchCheck(newProps.checkId)
+    }
+  }
 
   handleCloseCheck(){
     this.closeCheck(id)
