@@ -14,6 +14,7 @@ class CheckShow extends React.Component {
     this.createCheckItemList = this.createCheckItemList.bind(this);
     this.handleCloseCheck = this.handleCloseCheck.bind(this);
     this.closeCheck = this.props.closeCheck;
+    this.order = this.order.bind(this);
   }
 
   componentDidMount(){
@@ -49,30 +50,64 @@ class CheckShow extends React.Component {
     }
   }
 
+  order(items){
+    // debugger
+    if (items === undefined) { return null }
+    // debugger
+    let times = items.map( item => item.dateCreated )
+    let timesSorted = times.sort().reverse()
+    let sortedItems = [];
+    for (let i = 0; i < timesSorted.length; i++ ){
+      for (let j = 0; j < timesSorted.length; j ++) {
+        if (times[i] === items[j].dateCreated){
+          sortedItems.push(items[j])
+        }
+      }
+    }
+    // debugger
+    return sortedItems
+  }
+
   createCheckItemList(items, status){
     let orderedItems;
+    let unvoidedItems;
+    let voidItems;
+    let that = this;
     if (items === undefined){
       return undefined
     } else {
-      orderedItems = []
+      orderedItems = this.order(items);
+      unvoidedItems = [];
+      voidItems = []
+      // debugger
       for (let i = 0; i < items.length; i++){
-        if (items[i].voided === true && status === 'closed') {continue}
+        if (orderedItems[i].voided === true && status === 'closed') { continue }
         for (let j = 0; j < this.props.items.length; j++){
-          if (items[i].itemId === this.props.items[j].id){
-            orderedItems.push(
-              <ul key={items[i].id} className='item-information'>
+          if (orderedItems[i].itemId === this.props.items[j].id){
+            if (orderedItems[i].voided === true) {
+              debugger
+              voidItems.push(
+              <ul key={orderedItems[i].id} className='item-information'>
                 <li>{this.props.items[j].name}</li>
                 <li>${this.props.items[j].price}</li>
-                {items[i].voided === false && status === 'open' ? <li><button className='void-item-button' onClick={() => this.handleVoidItem(this.props.checkId, items[i].id)}>Void Item</button></li> : <li id='empty'></li>}
-                {items[i].voided === true && status === 'open' ? <li>Voided</li> : <li id='empty'></li>}
-                {status === 'closed' && items[i].voided === true ? <li>Voided</li> : <li id='empty'></li>}
+                {orderedItems[i].voided === true && status === 'open' ? <li>Voided</li> : <li id='empty'></li>}
+              </ul>
+            )
+          continue;
+        }
+            unvoidedItems.push(
+              <ul key={orderedItems[i].id} className='item-information'>
+                <li>{this.props.items[j].name}</li>
+                <li>${this.props.items[j].price}</li>
+                {orderedItems[i].voided === false && status === 'open' ? <li><button className='void-item-button' onClick={() => this.handleVoidItem(this.props.checkId, items[i].id)}>Void This Item</button></li> : <li id='empty'></li>}
               </ul>
             )
           }
         }
       }
     }
-    return orderedItems
+    unvoidedItems.push(voidItems)
+    return unvoidedItems
   }
 
   render(){
