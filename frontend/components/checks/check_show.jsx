@@ -59,9 +59,9 @@ class CheckShow extends React.Component {
               <ul key={items[i].id} className='item-information'>
                 <li>{this.props.items[j].name}</li>
                 <li>${this.props.items[j].price}</li>
-                {items[i].voided === false && status === 'open' ? <li onClick={() => this.handleVoidItem(this.props.checkId, items[i].id)}>Void Item</li> : <li></li>}
-                {items[i].voided === true && status === 'open' ? <li onClick={() => this.handleVoidItem(this.props.checkId, items[i].id)}>Voided</li> : <li></li>}
-                {status === 'closed' && items[i].voided === true ? <li>Voided</li> : <li></li>}
+                {items[i].voided === false && status === 'open' ? <li><button className='void-item-button' onClick={() => this.handleVoidItem(this.props.checkId, items[i].id)}>Void Item</button></li> : <li id='empty'></li>}
+                {items[i].voided === true && status === 'open' ? <li>Voided</li> : <li id='empty'></li>}
+                {status === 'closed' && items[i].voided === true ? <li>Voided</li> : <li id='empty'></li>}
               </ul>
             )
           }
@@ -93,7 +93,7 @@ class CheckShow extends React.Component {
               <ul className='ordered-items-list'>
                 {orderedItems}
               </ul>
-              <ul>
+              <ul className='closed-check-details'>
                 <li>
                   Tip: {this.props.check.tip}
                 </li>

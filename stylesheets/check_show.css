@@ -27,10 +27,31 @@
 }
 
 .ordered-items-list {
-  background-color: red;
+  display: table;
+  width: 100%;
+  border-spacing:.5em;
+  border-bottom: 1px solid black;
 }
 
-.item-information {
-  display: flex;
-  justify-content: space-between;
+.item-information li {
+  padding:1em;
+  width:24%;
+  display:table-cell;
+}
+
+/* #empty {
+  display: none;
+} */
+
+.void-item-button:hover {
+  color: red;
+}
+
+.closed-check-details {
+  margin-left: 50px;
+  color: red;
+}
+
+.closed-check-details li{
+  padding: 10px;
 }
