@@ -11,6 +11,15 @@
   justify-content: center;
 }
 
+.close-check-button-show{
+  margin: 0 auto;
+  color: red;
+}
+
+.close-check-button-show:hover {
+  color: green;
+}
+
 .add-item-button {
   border: 1px solid #686970;
   padding: 2px;

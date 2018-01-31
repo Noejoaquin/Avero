@@ -11,7 +11,9 @@ class CheckShow extends React.Component {
     this.voidItemOnCheck = this.props.voidItemOnCheck;
     this.tableId = this.props.tableId;
     this.toggleModal = this.toggleModal.bind(this);
-    this.createCheckItemList = this.createCheckItemList.bind(this)
+    this.createCheckItemList = this.createCheckItemList.bind(this);
+    this.handleCloseCheck = this.handleCloseCheck.bind(this);
+    this.closeCheck = this.props.closeCheck;
   }
 
   componentDidMount(){
@@ -24,7 +26,7 @@ class CheckShow extends React.Component {
     }
   }
 
-  handleCloseCheck(){
+  handleCloseCheck(id){
     this.closeCheck(id)
   }
 
@@ -117,6 +119,9 @@ class CheckShow extends React.Component {
                 <li className='check-status'>
                   Check Status: {this.props.check.closed === false ? 'OPEN' : 'CLOSED'}
                 </li>
+                <button className='close-check-button-show' onClick={() => this.handleCloseCheck(this.props.checkId)}>
+                  Close Check
+                </button>
               </ul>
               <div className='item-container'>
                 <button className='add-item-button' onClick={this.toggleModal}>Add Item</button>
