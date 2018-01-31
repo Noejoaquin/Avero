@@ -10,3 +10,20 @@
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black */
 }
+
+.error-modal-header {
+  background-color: #F54343;
+  color: #DADDF5;
+}
+
+.error-list {
+  height: 200px;
+  align-items: center;
+  text-transform: capitalize;
+  color:#F54343;
+  background-color: #DADDF5;
+}
+
+.error-list-item {
+  font-size: 20px;
+}

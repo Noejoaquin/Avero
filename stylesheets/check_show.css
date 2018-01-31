@@ -24,7 +24,8 @@
 
 .add-item-button {
   border: 1px solid #686970;
-  padding: 2px;
+  padding: 4px;
+  margin-left: 33px;
 }
 
 .add-item-button:hover {

@@ -19,6 +19,9 @@
 
 .modal-header {
   height: 50px;
+  align-items: center;
+  font-size: 30px;
+  letter-spacing: 1.5px;
 }
 
 @-webkit-keyframes animatetop {
