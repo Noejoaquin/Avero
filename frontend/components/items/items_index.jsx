@@ -26,7 +26,7 @@ class ItemIndex extends React.Component {
       })
     }
     return (
-        <ul className='modal-list item-list'>
+        <ul className='modal-list item-modal-list'>
           {items}
         </ul>
     )

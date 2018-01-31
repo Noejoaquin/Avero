@@ -126,7 +126,8 @@ class CheckShow extends React.Component {
               </ul>
               <div className='item-container'>
                 <button className='add-item-button' onClick={this.toggleModal}>Add Item</button>
-                <div className='item-modal' >
+                <div className='item-modal'>
+                  <h1 className='modal-list modal-header modal-list-header'>Menu Items</h1>
                   <ItemIndexContainer checkId={this.props.check.id}/>
                 </div>
               </div>

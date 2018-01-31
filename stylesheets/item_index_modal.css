@@ -11,23 +11,28 @@
   background-color: rgba(0,0,0,0.4); /* Black */
 }
 
+.modal-list-header {
+  background-color: #8292F7;
+  align-items: center;
+  font-size: 30px;
+  color: #DADDF5;
+}
+
+.item-modal-list {
+  background-color: #DADDF5;
+}
+
 .item-index-item {
   align-self: center;
   border: 1px solid black;
   margin:5px;
+  padding: 4px;
 }
 
 .item-index-item:hover {
-  background-color: grey;
   cursor: pointer;
-}
-
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
+  background-color: #8292F7;
+  color: #DADDF5;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
 }

@@ -1,3 +1,4 @@
+
 .modal-list {
   position: relative;
   background-color: #fefefe;
@@ -14,6 +15,10 @@
   justify-content: center;
   flex-wrap: wrap;
   height: 300px;
+}
+
+.modal-header {
+  height: 50px;
 }
 
 @-webkit-keyframes animatetop {
