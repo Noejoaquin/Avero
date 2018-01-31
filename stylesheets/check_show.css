@@ -34,9 +34,6 @@
   -webkit-transition: all .4s ease;
 }
 
-.item-container {
-}
-
 .ordered-items-list {
   display: table;
   width: 100%;
