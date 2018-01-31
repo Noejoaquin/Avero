@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import CheckIndex from './check_index';
 import { fetchChecks, createCheck, closeCheck, clearErrors } from '../../actions/check_actions'
 import { fetchTables } from '../../actions/table_actions';
-
 import reverse from 'lodash';
 
 
@@ -20,7 +19,6 @@ const mapStateToProps = (state, ownProps) => {
   if (tables instanceof Array) {
     table = tables.filter( table => table.id === tableId)
     number = table[0].number
-    // debugger
   }
   for (let i = 0; i < timesSorted.length; i++ ){
     for (let j = 0; j < timesSorted.length; j ++) {
@@ -30,7 +28,6 @@ const mapStateToProps = (state, ownProps) => {
     }
   }
   let errors = state.errors.checks
-  // debugger
   return {
     checks,
     tableId,

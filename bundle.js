@@ -46276,6 +46276,8 @@ var _nav_container = __webpack_require__(238);
 
 var _nav_container2 = _interopRequireDefault(_nav_container);
 
+var _footer = __webpack_require__(240);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -46284,7 +46286,8 @@ var App = function App() {
         { className: 'app' },
         _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _nav_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _table_index_container2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/tables/:tableId/checks', component: _checks_index_container2.default })
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/tables/:tableId/checks', component: _checks_index_container2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _footer.Footer })
     );
 };
 
@@ -46518,7 +46521,6 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
       return table.id === tableId;
     });
     number = table[0].number;
-    // debugger
   }
   for (var i = 0; i < timesSorted.length; i++) {
     for (var j = 0; j < timesSorted.length; j++) {
@@ -46528,7 +46530,6 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     }
   }
   var errors = state.errors.checks;
-  // debugger
   return {
     checks: checks,
     tableId: tableId,
@@ -47499,6 +47500,59 @@ var NavBar = exports.NavBar = function NavBar(_ref) {
       'LARAVAL'
     ),
     linkToTables
+  );
+};
+
+/***/ }),
+/* 240 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Footer = undefined;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Footer = exports.Footer = function Footer(_ref) {
+  var id = _ref.id,
+      number = _ref.number;
+
+  return _react2.default.createElement(
+    "div",
+    { className: "footer-container" },
+    _react2.default.createElement("div", { className: "border" }),
+    _react2.default.createElement(
+      "h2",
+      { className: "footer-name" },
+      "Learn More About Noe Jimenez"
+    ),
+    _react2.default.createElement(
+      "ul",
+      { className: "link-list" },
+      _react2.default.createElement(
+        "a",
+        { href: "https://www.linkedin.com/in/noe-jimenez/", target: "_blank" },
+        _react2.default.createElement("i", { className: "fa fa-linkedin-square link-fa", "aria-hidden": "true" })
+      ),
+      _react2.default.createElement(
+        "a",
+        { href: "https://github.com/Noejoaquin", target: "_blank" },
+        _react2.default.createElement("i", { className: "fa fa-github-square link-fa", "aria-hidden": "true" })
+      ),
+      _react2.default.createElement(
+        "a",
+        { href: "http://www.noejimenez.com", target: "_blank" },
+        _react2.default.createElement("i", { className: "fa fa-user-circle link-fa", "aria-hidden": "true" })
+      )
+    )
   );
 };
 
