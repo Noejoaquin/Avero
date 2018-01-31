@@ -1,0 +1,26 @@
+.nav-container {
+}
+
+.nav-header {
+  display: flex;
+  justify-content: center;
+  color: #8292F7;
+  font-size: 80px;
+  line-height: 18px;
+  height: 128px;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.nav-button {
+  margin: 0 auto;
+  border: 1px solid #686970;
+  padding: 12px;
+}
+
+.nav-button:hover {
+  background-color: #8292F7;
+  color: #DADDF5;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+}
