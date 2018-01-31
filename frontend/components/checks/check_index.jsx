@@ -10,6 +10,7 @@ class CheckIndex extends React.Component {
     this.closeCheck = this.props.closeCheck;
     this.tableId = this.props.tableId;
     this.checks = this.props.checks;
+    this.fetchTables = this.props.fetchTables;
     this.errors = this.props.errors;
     this.clearErrors = this.props.clearErrors;
     this.createCheck = this.props.createCheck;
@@ -66,7 +67,7 @@ class CheckIndex extends React.Component {
       )
     })
     return (
-      <div>
+      <div className='check-index-container'>
         <h1 className='check-index-header'>CHECKS</h1>
         <button className='create-check' onClick={this.handleCreateCheck}>Open a new Check</button>
         <div className='index-show-container'>

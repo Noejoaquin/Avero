@@ -1,8 +1,26 @@
+.check-index-container {
+  margin-top: 33px;
+}
+
 .check-index-header {
   font-size: 40px;
-  color: red;
+  color: #424FA8;
   display: flex;
   justify-content: center;
+  margin-bottom: 15px;
+}
+
+.create-check {
+  margin: 0 auto;
+  padding-bottom: 10px;
+  font-size: 20px;
+  color: #424FA8;
+}
+
+.create-check:hover {
+  color: #DADDF5;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
 }
 
 .check-list {
@@ -12,18 +30,35 @@
 .check-index-item {
   display: flex;
   justify-content: space-around;
-  width: 500px;
+  width: 600px;
   height: 50px;
-  border: 1px solid black;
+  border: 1px solid #686970;
   align-items: center;
+  background-color: #DADDF5;
+  padding: 2px;
+}
+
+.check-index-item:hover {
+  background-color: #8292F7;
+  color: #DADDF5;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+  transform: scale(1.025) perspective(1px);
+  z-index: 1;
 }
 
 .close-check-button {
-  border: 1px solid black;
+  border: 1px solid #686970;
+  padding: 2px;
+  color: #BF0C0C;
 }
 
 .close-check-button:hover {
-  color: blue;
+  color: black;
+  background-color: #BF0C0C;
+  border: 1px solid #686970;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
 }
 
 .index-show-container {
@@ -32,12 +67,13 @@
 }
 
 .holder-for-show {
-  width: 500px;
+  width: 600px;
   height: 500px;
-  border: 1px solid black;
+  border: 1px solid #686970;
+  margin-left:8px;
 }
 
 .check-index-item-show {
   height: 500px;
-  width: 500px;
+  width: 600px;
 }
