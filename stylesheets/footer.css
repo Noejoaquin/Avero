@@ -1,8 +1,12 @@
 .footer-container {
   height: 150px;
-background: linear-gradient(to right, #E3D5CB, #AD6230);  /* background-color: #DADDF5; */
+  background: linear-gradient(
+    to right,
+    #e3d5cb,
+    #ad6230
+  );
   margin-top: 50px;
-  color: #DADDF5;
+  color: #daddf5;
 }
 
 .footer-name {
@@ -25,18 +29,18 @@ background: linear-gradient(to right, #E3D5CB, #AD6230);  /* background-color: #
   margin-top: 15px;
   display: flex;
   justify-content: center;
-  border-top: 1px solid #E3D5CB;
+  border-top: 1px solid #e3d5cb;
 }
 
 .link-fa {
   font-size: 40px;
-  color: #DADDF5 ;
+  color: #daddf5;
   padding-right: 15px;
 }
 
 .link-fa:hover {
   cursor: pointer;
-  color: #424FA8;
-  transition: all .4s ease;
-  -webkit-transition: all .4s ease;
+  color: #424fa8;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
 }
