@@ -46526,10 +46526,12 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     }
   }
   var errors = state.errors.checks;
+  var path = ownProps.location.pathname;
   return {
     checks: checks,
     tableId: tableId,
     number: number,
+    path: path,
     errors: errors
   };
 };
@@ -46581,6 +46583,8 @@ var _check_show_container2 = _interopRequireDefault(_check_show_container);
 
 var _error_modal = __webpack_require__(237);
 
+var _check_index_item = __webpack_require__(241);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -46607,11 +46611,13 @@ var CheckIndex = function (_React$Component) {
     _this.createCheck = _this.props.createCheck;
     _this.handleCreateCheck = _this.handleCreateCheck.bind(_this);
     _this.handleCloseCheck = _this.handleCloseCheck.bind(_this);
+    _this.renderErrorModal = _this.renderErrorModal.bind(_this);
+    _this.createCheckItem = _this.createCheckItem.bind(_this);
     return _this;
   }
 
   _createClass(CheckIndex, [{
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
 
@@ -46620,120 +46626,114 @@ var CheckIndex = function (_React$Component) {
       });
     }
   }, {
-    key: 'handleCreateCheck',
+    key: "handleCreateCheck",
     value: function handleCreateCheck() {
       this.createCheck(this.tableId);
     }
   }, {
-    key: 'handleCloseCheck',
+    key: "handleCloseCheck",
     value: function handleCloseCheck(id) {
       this.closeCheck(id);
     }
   }, {
-    key: 'render',
-    value: function render() {
+    key: "renderErrorModal",
+    value: function renderErrorModal() {
+      var that = this;
+      window.addEventListener("click", function (e) {
+        var modal = document.getElementsByClassName("error-modal")[0];
+        var button = document.getElementsByClassName("error-modal-button")[0];
+        if (e.target == modal || e.target == button) {
+          modal.style.display = "none";
+          that.props.clearErrors();
+        }
+      });
+      //render the error modal
+      return _react2.default.createElement(_error_modal.ErrorModal, { description: this.props.errors.Description });
+    }
+  }, {
+    key: "createCheckItem",
+    value: function createCheckItem(check) {
       var _this3 = this;
+
+      var status = check.closed === false ? "OPEN" : "CLOSED";
+      var close = void 0;
+      if (status === "OPEN") {
+        close = _react2.default.createElement(
+          "li",
+          null,
+          _react2.default.createElement(
+            "button",
+            {
+              className: "close-check-button",
+              onClick: function onClick() {
+                return _this3.handleCloseCheck(check.id);
+              }
+            },
+            "Close Check"
+          )
+        );
+      } else {
+        close = _react2.default.createElement("li", null);
+      }
+      return _react2.default.createElement(_check_index_item.CheckIndexItem, {
+        key: check.id,
+        tableId: check.tableId,
+        checkId: check.id,
+        path: this.props.path,
+        status: status,
+        close: close,
+        dateCreated: check.dateCreated
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this4 = this;
 
       var error = void 0;
       if (this.props.errors.Name) {
-        var that = this;
-        window.addEventListener('click', function (e) {
-          var modal = document.getElementsByClassName('error-modal')[0];
-          var button = document.getElementsByClassName('error-modal-button')[0];
-          if (e.target == modal || e.target == button) {
-            modal.style.display = 'none';
-            that.props.clearErrors();
-          }
-        });
-        //render the error modal
-        error = _react2.default.createElement(_error_modal.ErrorModal, { description: this.props.errors.Description });
+        error = this.renderErrorModal(error);
       }
+
       var checks = this.props.checks.map(function (check) {
-        var status = check.closed === false ? 'OPEN' : 'CLOSED';
-        var close = void 0;
-        if (status === 'OPEN') {
-          close = _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              'button',
-              { className: 'close-check-button', onClick: function onClick() {
-                  return _this3.handleCloseCheck(check.id);
-                } },
-              'Close Check'
-            )
-          );
-        } else {
-          close = _react2.default.createElement('li', null);
-        }
-        return _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/tables/' + check.tableId + '/checks/' + check.id, key: check.id },
-          _react2.default.createElement(
-            'div',
-            { id: status, className: 'check-index-item' },
-            _react2.default.createElement(
-              'div',
-              { className: 'check' },
-              _react2.default.createElement(
-                'li',
-                { className: 'first-line' },
-                'Check ID: ',
-                check.id
-              ),
-              _react2.default.createElement(
-                'li',
-                null,
-                'Date Created: ',
-                new Date(check.dateCreated).toString().split('-')[0]
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              null,
-              _react2.default.createElement(
-                'li',
-                { className: 'first-line' },
-                'Status: ',
-                status
-              ),
-              close
-            )
-          )
-        );
+        return _this4.createCheckItem(check);
       });
 
       if (checks.length === 0) {
         checks = _react2.default.createElement(
-          'li',
-          { className: 'empty-check-list-note' },
-          'There Are Currently No Checks For This Table'
+          "li",
+          { className: "empty-check-list-note" },
+          "There Are Currently No Checks For This Table"
         );
       }
       // debugger
       return _react2.default.createElement(
-        'div',
-        { className: 'check-index-container' },
+        "div",
+        { className: "check-index-container" },
         _react2.default.createElement(
-          'h1',
-          { className: 'check-index-header' },
-          'CHECKS FOR TABLE ',
+          "h1",
+          { className: "check-index-header" },
+          "CHECKS FOR TABLE ",
           this.props.number
         ),
         _react2.default.createElement(
-          'button',
-          { className: 'create-check', onClick: this.handleCreateCheck },
-          'Open a new Check'
+          "button",
+          { className: "create-check", onClick: this.handleCreateCheck },
+          "Open a new Check"
         ),
         _react2.default.createElement(
-          'div',
-          { className: 'index-show-container' },
+          "div",
+          { className: "index-show-container" },
           _react2.default.createElement(
-            'ul',
-            { className: 'check-list' },
+            "ul",
+            { className: "check-list" },
             checks
           ),
-          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/tables/:tableId/checks/:checkId', component: _check_show_container2.default })
+          _react2.default.createElement(_reactRouterDom.Route, {
+            exact: true,
+            path: "/tables/:tableId/checks/:checkId",
+            component: _check_show_container2.default
+          })
         ),
         error
       );
@@ -47549,6 +47549,107 @@ var Footer = exports.Footer = function Footer(_ref) {
       )
     )
   );
+};
+
+/***/ }),
+/* 241 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CheckIndexItem = undefined;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var CheckIndexItem = exports.CheckIndexItem = function CheckIndexItem(_ref) {
+  var checkId = _ref.checkId,
+      tableId = _ref.tableId,
+      path = _ref.path,
+      status = _ref.status,
+      close = _ref.close,
+      dateCreated = _ref.dateCreated;
+
+  var date = new Date(dateCreated).toString().split('-')[0];
+  if (checkId === path.split('/')[4]) {
+    return _react2.default.createElement(
+      'div',
+      { id: status, className: 'check-index-item' },
+      _react2.default.createElement(
+        'div',
+        { className: 'check' },
+        _react2.default.createElement(
+          'li',
+          { className: 'first-line' },
+          'Check ID: ',
+          checkId
+        ),
+        _react2.default.createElement(
+          'li',
+          null,
+          'Date Created: ',
+          date
+        )
+      ),
+      _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'li',
+          { className: 'first-line' },
+          'Status: ',
+          status
+        ),
+        close
+      )
+    );
+  } else {
+
+    return _react2.default.createElement(
+      _reactRouterDom.Link,
+      { to: '/tables/' + tableId + '/checks/' + checkId },
+      _react2.default.createElement(
+        'div',
+        { id: status, className: 'check-index-item' },
+        _react2.default.createElement(
+          'div',
+          { className: 'check' },
+          _react2.default.createElement(
+            'li',
+            { className: 'first-line' },
+            'Check ID: ',
+            checkId
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            'Date Created: ',
+            date
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'li',
+            { className: 'first-line' },
+            'Status: ',
+            status
+          ),
+          close
+        )
+      )
+    );
+  }
 };
 
 /***/ })

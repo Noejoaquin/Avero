@@ -27,10 +27,12 @@ const mapStateToProps = (state, ownProps) => {
     }
   }
   let errors = state.errors.checks
+  let path = ownProps.location.pathname
   return {
     checks,
     tableId,
     number,
+    path,
     errors
   }
 }

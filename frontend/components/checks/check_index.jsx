@@ -1,12 +1,13 @@
-import React from 'react';
-import { Route, Link } from 'react-router-dom';
-import CheckShowContainer from './check_show_container';
-import { ErrorModal } from '../errors/error_modal';
+import React from "react";
+import { Route, Link } from "react-router-dom";
+import CheckShowContainer from "./check_show_container";
+import { ErrorModal } from "../errors/error_modal";
+import { CheckIndexItem } from "./check_index_item";
 
 class CheckIndex extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.fetchChecks= this.props.fetchChecks;
+    this.fetchChecks = this.props.fetchChecks;
     this.closeCheck = this.props.closeCheck;
     this.tableId = this.props.tableId;
     this.checks = this.props.checks;
@@ -16,78 +17,104 @@ class CheckIndex extends React.Component {
     this.createCheck = this.props.createCheck;
     this.handleCreateCheck = this.handleCreateCheck.bind(this);
     this.handleCloseCheck = this.handleCloseCheck.bind(this);
+    this.renderErrorModal = this.renderErrorModal.bind(this);
+    this.createCheckItem = this.createCheckItem.bind(this);
   }
 
-  componentDidMount(){
-    this.fetchChecks().then( () => this.fetchTables())
+  componentDidMount() {
+    this.fetchChecks().then(() => this.fetchTables());
   }
 
-  handleCreateCheck(){
-    this.createCheck(this.tableId)
+  handleCreateCheck() {
+    this.createCheck(this.tableId);
   }
 
-  handleCloseCheck(id){
-    this.closeCheck(id)
+  handleCloseCheck(id) {
+    this.closeCheck(id);
   }
 
-  render(){
+  renderErrorModal() {
+    let that = this;
+    window.addEventListener("click", function(e) {
+      let modal = document.getElementsByClassName("error-modal")[0];
+      let button = document.getElementsByClassName("error-modal-button")[0];
+      if (e.target == modal || e.target == button) {
+        modal.style.display = "none";
+        that.props.clearErrors();
+      }
+    });
+    //render the error modal
+    return <ErrorModal description={this.props.errors.Description} />;
+  }
+
+  createCheckItem(check) {
+    let status = check.closed === false ? "OPEN" : "CLOSED";
+    let close;
+    if (status === "OPEN") {
+      close = (
+        <li>
+          <button
+            className="close-check-button"
+            onClick={() => this.handleCloseCheck(check.id)}
+          >
+            Close Check
+          </button>
+        </li>
+      );
+    } else {
+      close = <li />;
+    }
+    return (
+      <CheckIndexItem
+        key={check.id}
+        tableId={check.tableId}
+        checkId={check.id}
+        path={this.props.path}
+        status={status}
+        close={close}
+        dateCreated={check.dateCreated}
+      />
+    );
+  }
+
+  render() {
     let error;
     if (this.props.errors.Name) {
-      let that = this
-      window.addEventListener('click', function(e) {
-        let modal = document.getElementsByClassName('error-modal')[0]
-        let button = document.getElementsByClassName('error-modal-button')[0]
-        if (e.target == modal || e.target == button) {
-          modal.style.display = 'none'
-          that.props.clearErrors()
-        }
-      })
-      //render the error modal
-      error =  <ErrorModal description={this.props.errors.Description}/>
+      error = this.renderErrorModal(error);
     }
-    let checks = this.props.checks.map( (check) => {
-      let status = check.closed === false ? 'OPEN' : 'CLOSED'
-      let close;
-      if (status === 'OPEN'){
-         close = <li><button className='close-check-button' onClick={() => this.handleCloseCheck(check.id)}>Close Check</button></li>
-      } else {
-        close = <li></li>
-      }
-      return (
-        <Link to={`/tables/${check.tableId}/checks/${check.id}`} key={check.id}><div id={status} className='check-index-item'>
 
-            <div className='check'>
-              <li className='first-line'>Check ID: {check.id}</li>
-              <li>Date Created: {new Date(check.dateCreated).toString().split('-')[0]}</li>
-            </div>
-            <div>
-              <li className='first-line'>Status: {status}</li>
-              {close}
-            </div>
-
-        </div></Link>
-      )
-    })
+    let checks = this.props.checks.map(check => {
+      return this.createCheckItem(check);
+    });
 
     if (checks.length === 0) {
-      checks = <li className='empty-check-list-note'>There Are Currently No Checks For This Table</li>
+      checks = (
+        <li className="empty-check-list-note">
+          There Are Currently No Checks For This Table
+        </li>
+      );
     }
     // debugger
     return (
-      <div className='check-index-container'>
-        <h1 className='check-index-header'>CHECKS FOR TABLE {this.props.number}</h1>
-        <button className='create-check' onClick={this.handleCreateCheck}>Open a new Check</button>
-        <div className='index-show-container'>
-          <ul className='check-list'>
-            { checks }
-          </ul>
-          <Route exact path="/tables/:tableId/checks/:checkId" component={CheckShowContainer} />
+      <div className="check-index-container">
+        <h1 className="check-index-header">
+          CHECKS FOR TABLE {this.props.number}
+        </h1>
+        <button className="create-check" onClick={this.handleCreateCheck}>
+          Open a new Check
+        </button>
+        <div className="index-show-container">
+          <ul className="check-list">{checks}</ul>
+          <Route
+            exact
+            path="/tables/:tableId/checks/:checkId"
+            component={CheckShowContainer}
+          />
         </div>
         {error}
       </div>
-    )
+    );
   }
 }
-
 
 export default CheckIndex;
