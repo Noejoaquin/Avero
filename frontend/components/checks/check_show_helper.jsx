@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import ItemIndexContainer from "../items/items_index_container";
 
 export const CheckShowHelper = ({

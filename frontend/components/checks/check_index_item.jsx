@@ -22,10 +22,10 @@ export const CheckIndexItem = ({
           <li>Date Created: {date}</li>
         </div>
         <div>
-          <li className="first-line status">
+          <div className="first-line status">
             <li>Status:</li>
             <li className={status}>{status}</li>
-          </li>
+          </div>
           {close}
         </div>
       </div>
@@ -39,10 +39,10 @@ export const CheckIndexItem = ({
             <li>Date Created: {date}</li>
           </div>
           <div>
-            <li className="first-line status">
+            <div className="first-line status">
               <li>Status:</li>
               <li className={status}>{status}</li>
-            </li>
+            </div>
             {close}
           </div>
         </div>

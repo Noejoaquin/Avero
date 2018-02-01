@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import CheckShowContainer from "./check_show_container";
 import { ErrorModal } from "../errors/error_modal";
 import { CheckIndexItem } from "./check_index_item";
