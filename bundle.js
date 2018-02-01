@@ -46848,6 +46848,8 @@ var _items_index_container2 = _interopRequireDefault(_items_index_container);
 
 var _check_show_item = __webpack_require__(237);
 
+var _check_show_helper = __webpack_require__(243);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -46962,7 +46964,9 @@ var CheckShow = function (_React$Component) {
           for (var j = 0; j < this.props.items.length; j++) {
             if (orderedItems[i].itemId === this.props.items[j].id) {
               if (orderedItems[i].voided === true) {
+                debugger;
                 voidItems.push(_react2.default.createElement(_check_show_item.CheckShowItem, {
+                  key: orderedItems[i].id,
                   voided: true,
                   checkId: this.props.checkId,
                   orderedItem: orderedItems[i],
@@ -46971,6 +46975,7 @@ var CheckShow = function (_React$Component) {
                 }));
               } else {
                 unvoidedItems.push(_react2.default.createElement(_check_show_item.CheckShowItem, {
+                  key: orderedItems[i].id,
                   voided: false,
                   status: status,
                   handleVoidItem: this.handleVoidItem,
@@ -46990,142 +46995,33 @@ var CheckShow = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
-
-      /// FIX THIS 
+      var orderedItems = void 0;
+      var status = void 0;
       if (this.props.check === undefined) {
         return null;
       } else {
         if (this.props.check.closed === true) {
-          var orderedItems = this.createCheckItemList(this.props.check.orderedItems, "closed");
-          return _react2.default.createElement(
-            "div",
-            {
-              id: status,
-              key: this.props.check.id,
-              className: "check-index-item-show"
-            },
-            _react2.default.createElement(
-              "ul",
-              { className: "basic-check-info-list" },
-              _react2.default.createElement(
-                "li",
-                { className: "check-id" },
-                "Check ID: ",
-                this.props.check.id
-              ),
-              _react2.default.createElement(
-                "li",
-                { className: "check-table-id" },
-                "Check Table ID: ",
-                this.props.check.tableId
-              ),
-              _react2.default.createElement(
-                "li",
-                { className: "check-status" },
-                "Check Status:",
-                " ",
-                this.props.check.closed === false ? "OPEN" : "CLOSED"
-              )
-            ),
-            _react2.default.createElement(
-              "ul",
-              { className: "ordered-items-list closed-check-items" },
-              orderedItems
-            ),
-            _react2.default.createElement(
-              "ul",
-              { className: "closed-check-details" },
-              _react2.default.createElement(
-                "li",
-                null,
-                "Tip: ",
-                this.props.check.tip
-              ),
-              _react2.default.createElement(
-                "li",
-                null,
-                "Tax: ",
-                this.props.check.tax
-              )
-            )
-          );
+          var _orderedItems = this.createCheckItemList(this.props.check.orderedItems, "closed");
+          return _react2.default.createElement(_check_show_helper.CheckShowHelper, {
+            key: this.props.check.id,
+            status: "closed",
+            tip: this.props.check.tip,
+            tax: this.props.check.tax,
+            checkId: this.props.check.id,
+            tableId: this.props.check.tableId,
+            orderedItems: _orderedItems
+          });
         } else {
-          var _orderedItems = this.createCheckItemList(this.props.check.orderedItems, "open");
-          return _react2.default.createElement(
-            "div",
-            {
-              id: status,
-              key: this.props.check.id,
-              className: "check-index-item-show"
-            },
-            _react2.default.createElement(
-              "ul",
-              { className: "basic-check-info-list" },
-              _react2.default.createElement(
-                "li",
-                { className: "check-id" },
-                "Check ID: ",
-                this.props.check.id
-              ),
-              _react2.default.createElement(
-                "li",
-                { className: "check-table-id" },
-                "Check Table ID: ",
-                this.props.check.tableId
-              ),
-              _react2.default.createElement(
-                "li",
-                { className: "check-status" },
-                "Check Status:",
-                " ",
-                this.props.check.closed === false ? "OPEN" : "CLOSED"
-              ),
-              _react2.default.createElement(
-                "button",
-                {
-                  className: "close-check-button-show",
-                  onClick: function onClick() {
-                    return _this4.handleCloseCheck(_this4.props.checkId);
-                  }
-                },
-                "Close Check"
-              )
-            ),
-            _react2.default.createElement(
-              "div",
-              { className: "item-container" },
-              _react2.default.createElement(
-                "button",
-                { className: "add-item-button", onClick: this.toggleModal },
-                "Add Item"
-              ),
-              _react2.default.createElement(
-                "div",
-                { className: "item-modal" },
-                _react2.default.createElement(
-                  "div",
-                  { className: "modal-list exit-button-container exit-button-container-items" },
-                  _react2.default.createElement(
-                    "button",
-                    { className: "modal-list exit-modal-button item-modal-button" },
-                    "X"
-                  )
-                ),
-                _react2.default.createElement(
-                  "h1",
-                  { className: "modal-list modal-header modal-list-header" },
-                  "Menu Items"
-                ),
-                _react2.default.createElement(_items_index_container2.default, { checkId: this.props.check.id })
-              )
-            ),
-            _react2.default.createElement(
-              "ul",
-              { className: "ordered-items-list" },
-              _orderedItems
-            )
-          );
+          orderedItems = this.createCheckItemList(this.props.check.orderedItems, "open");
+          return _react2.default.createElement(_check_show_helper.CheckShowHelper, {
+            key: this.props.check.id,
+            status: "open",
+            toggleModal: this.toggleModal,
+            handleCloseCheck: this.handleCloseCheck,
+            orderedItems: orderedItems,
+            tableId: this.props.check.tableId,
+            checkId: this.props.check.id
+          });
         }
       }
     }
@@ -47709,6 +47605,170 @@ var Footer = exports.Footer = function Footer(_ref) {
       )
     )
   );
+};
+
+/***/ }),
+/* 243 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CheckShowHelper = undefined;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(5);
+
+var _items_index_container = __webpack_require__(234);
+
+var _items_index_container2 = _interopRequireDefault(_items_index_container);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var CheckShowHelper = exports.CheckShowHelper = function CheckShowHelper(_ref) {
+  var status = _ref.status,
+      toggleModal = _ref.toggleModal,
+      handleCloseCheck = _ref.handleCloseCheck,
+      orderedItems = _ref.orderedItems,
+      checkId = _ref.checkId,
+      tableId = _ref.tableId,
+      tip = _ref.tip,
+      tax = _ref.tax;
+
+  if (status === 'open') {
+    return _react2.default.createElement(
+      'div',
+      {
+        id: status,
+        key: checkId,
+        className: 'check-index-item-show'
+      },
+      _react2.default.createElement(
+        'ul',
+        { className: 'basic-check-info-list' },
+        _react2.default.createElement(
+          'li',
+          { className: 'check-id' },
+          'Check ID: ',
+          checkId
+        ),
+        _react2.default.createElement(
+          'li',
+          { className: 'check-table-id' },
+          'Check Table ID: ',
+          tableId
+        ),
+        _react2.default.createElement(
+          'li',
+          { className: 'check-status' },
+          'Check Status:',
+          " ",
+          status === 'open' ? "OPEN" : "CLOSED"
+        ),
+        _react2.default.createElement(
+          'button',
+          {
+            className: 'close-check-button-show',
+            onClick: function onClick() {
+              return handleCloseCheck(checkId);
+            }
+          },
+          'Close Check'
+        )
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'item-container' },
+        _react2.default.createElement(
+          'button',
+          { className: 'add-item-button', onClick: toggleModal },
+          'Add Item'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'item-modal' },
+          _react2.default.createElement(
+            'div',
+            { className: 'modal-list exit-button-container exit-button-container-items' },
+            _react2.default.createElement(
+              'button',
+              { className: 'modal-list exit-modal-button item-modal-button' },
+              'X'
+            )
+          ),
+          _react2.default.createElement(
+            'h1',
+            { className: 'modal-list modal-header modal-list-header' },
+            'Menu Items'
+          ),
+          _react2.default.createElement(_items_index_container2.default, { checkId: checkId })
+        )
+      ),
+      _react2.default.createElement(
+        'ul',
+        { className: 'ordered-items-list' },
+        orderedItems
+      )
+    );
+  } else {
+    return _react2.default.createElement(
+      'div',
+      {
+
+        className: 'check-index-item-show'
+      },
+      _react2.default.createElement(
+        'ul',
+        { className: 'basic-check-info-list' },
+        _react2.default.createElement(
+          'li',
+          { className: 'check-id' },
+          'Check ID: ',
+          checkId
+        ),
+        _react2.default.createElement(
+          'li',
+          { className: 'check-table-id' },
+          'Check Table ID: ',
+          tableId
+        ),
+        _react2.default.createElement(
+          'li',
+          { className: 'check-status' },
+          'Check Status:',
+          " ",
+          status === 'open' ? "OPEN" : "CLOSED"
+        )
+      ),
+      _react2.default.createElement(
+        'ul',
+        { className: 'ordered-items-list closed-check-items' },
+        orderedItems
+      ),
+      _react2.default.createElement(
+        'ul',
+        { className: 'closed-check-details' },
+        _react2.default.createElement(
+          'li',
+          null,
+          'Tip: ',
+          tip
+        ),
+        _react2.default.createElement(
+          'li',
+          null,
+          'Tax: ',
+          tax
+        )
+      )
+    );
+  }
 };
 
 /***/ })

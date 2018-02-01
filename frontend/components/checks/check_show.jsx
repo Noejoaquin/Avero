@@ -2,6 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import ItemIndexContainer from "../items/items_index_container";
 import { CheckShowItem } from "./check_show_item";
+import { CheckShowHelper } from "./check_show_helper";
 
 class CheckShow extends React.Component {
   constructor(props) {
@@ -87,8 +88,10 @@ class CheckShow extends React.Component {
         for (let j = 0; j < this.props.items.length; j++) {
           if (orderedItems[i].itemId === this.props.items[j].id) {
             if (orderedItems[i].voided === true) {
+              debugger;
               voidItems.push(
                 <CheckShowItem
+                  key={orderedItems[i].id}
                   voided={true}
                   checkId={this.props.checkId}
                   orderedItem={orderedItems[i]}
@@ -99,6 +102,7 @@ class CheckShow extends React.Component {
             } else {
               unvoidedItems.push(
                 <CheckShowItem
+                  key={orderedItems[i].id}
                   voided={false}
                   status={status}
                   handleVoidItem={this.handleVoidItem}
@@ -117,7 +121,9 @@ class CheckShow extends React.Component {
     return unvoidedItems;
   }
 
-  render() { /// FIX THIS 
+  render() {
+    let orderedItems;
+    let status;
     if (this.props.check === undefined) {
       return null;
     } else {
@@ -127,75 +133,31 @@ class CheckShow extends React.Component {
           "closed"
         );
         return (
-          <div
-            id={status}
+          <CheckShowHelper
             key={this.props.check.id}
-            className="check-index-item-show"
-          >
-            <ul className="basic-check-info-list">
-              <li className="check-id">Check ID: {this.props.check.id}</li>
-              <li className="check-table-id">
-                Check Table ID: {this.props.check.tableId}
-              </li>
-              <li className="check-status">
-                Check Status:{" "}
-                {this.props.check.closed === false ? "OPEN" : "CLOSED"}
-              </li>
-            </ul>
-            <ul className="ordered-items-list closed-check-items">
-              {orderedItems}
-            </ul>
-            <ul className="closed-check-details">
-              <li>Tip: {this.props.check.tip}</li>
-              <li>Tax: {this.props.check.tax}</li>
-            </ul>
-          </div>
+            status={"closed"}
+            tip={this.props.check.tip}
+            tax={this.props.check.tax}
+            checkId={this.props.check.id}
+            tableId={this.props.check.tableId}
+            orderedItems={orderedItems}
+          />
         );
       } else {
-        let orderedItems = this.createCheckItemList(
+        orderedItems = this.createCheckItemList(
           this.props.check.orderedItems,
           "open"
         );
         return (
-          <div
-            id={status}
+          <CheckShowHelper
             key={this.props.check.id}
-            className="check-index-item-show"
-          >
-            <ul className="basic-check-info-list">
-              <li className="check-id">Check ID: {this.props.check.id}</li>
-              <li className="check-table-id">
-                Check Table ID: {this.props.check.tableId}
-              </li>
-              <li className="check-status">
-                Check Status:{" "}
-                {this.props.check.closed === false ? "OPEN" : "CLOSED"}
-              </li>
-              <button
-                className="close-check-button-show"
-                onClick={() => this.handleCloseCheck(this.props.checkId)}
-              >
-                Close Check
-              </button>
-            </ul>
-            <div className="item-container">
-              <button className="add-item-button" onClick={this.toggleModal}>
-                Add Item
-              </button>
-              <div className="item-modal">
-                <div className="modal-list exit-button-container exit-button-container-items">
-                  <button className="modal-list exit-modal-button item-modal-button">
-                    X
-                  </button>
-                </div>
-                <h1 className="modal-list modal-header modal-list-header">
-                  Menu Items
-                </h1>
-                <ItemIndexContainer checkId={this.props.check.id} />
-              </div>
-            </div>
-            <ul className="ordered-items-list">{orderedItems}</ul>
-          </div>
+            status={"open"}
+            toggleModal={this.toggleModal}
+            handleCloseCheck={this.handleCloseCheck}
+            orderedItems={orderedItems}
+            tableId={this.props.check.tableId}
+            checkId={this.props.check.id}
+          />
         );
       }
     }
