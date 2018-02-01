@@ -46494,10 +46494,6 @@ var _check_actions = __webpack_require__(8);
 
 var _table_actions = __webpack_require__(16);
 
-var _lodash = __webpack_require__(81);
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
@@ -46969,26 +46965,25 @@ var CheckShow = function (_React$Component) {
           for (var j = 0; j < _this4.props.items.length; j++) {
             if (orderedItems[i].itemId === _this4.props.items[j].id) {
               if (orderedItems[i].voided === true) {
-                debugger;
                 voidItems.push(_react2.default.createElement(
                   "ul",
                   { key: orderedItems[i].id, className: "item-information" },
                   _react2.default.createElement(
                     "li",
                     null,
-                    _this4.props.items[j].name
+                    that.props.items[j].name
                   ),
                   _react2.default.createElement(
                     "li",
                     null,
                     "$",
-                    _this4.props.items[j].price
+                    that.props.items[j].price
                   ),
-                  orderedItems[i].voided === true && status === "open" ? _react2.default.createElement(
+                  _react2.default.createElement(
                     "li",
                     null,
                     "Voided"
-                  ) : _react2.default.createElement("li", { id: "empty" })
+                  )
                 ));
                 continue;
               }
@@ -46998,13 +46993,13 @@ var CheckShow = function (_React$Component) {
                 _react2.default.createElement(
                   "li",
                   null,
-                  _this4.props.items[j].name
+                  that.props.items[j].name
                 ),
                 _react2.default.createElement(
                   "li",
                   null,
                   "$",
-                  _this4.props.items[j].price
+                  that.props.items[j].price
                 ),
                 orderedItems[i].voided === false && status === "open" ? _react2.default.createElement(
                   "li",
@@ -47014,7 +47009,7 @@ var CheckShow = function (_React$Component) {
                     {
                       className: "void-item-button",
                       onClick: function onClick() {
-                        return _this4.handleVoidItem(_this4.props.checkId, items[i].id);
+                        return _this4.handleVoidItem(_this4.props.checkId, orderedItems[i].id);
                       }
                     },
                     "Void This Item"

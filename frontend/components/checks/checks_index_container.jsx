@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import CheckIndex from './check_index';
 import { fetchChecks, createCheck, closeCheck, clearErrors } from '../../actions/check_actions'
 import { fetchTables } from '../../actions/table_actions';
-import reverse from 'lodash';
 
 
 const mapStateToProps = (state, ownProps) => {

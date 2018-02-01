@@ -69,7 +69,7 @@ class CheckShow extends React.Component {
       }
     }
     // debugger
-    return sortedItems;
+    return sortedItems
   }
 
   createCheckItemList(items, status) {
@@ -91,30 +91,25 @@ class CheckShow extends React.Component {
         for (let j = 0; j < this.props.items.length; j++) {
           if (orderedItems[i].itemId === this.props.items[j].id) {
             if (orderedItems[i].voided === true) {
-              debugger;
               voidItems.push(
                 <ul key={orderedItems[i].id} className="item-information">
-                  <li>{this.props.items[j].name}</li>
-                  <li>${this.props.items[j].price}</li>
-                  {orderedItems[i].voided === true && status === "open" ? (
-                    <li>Voided</li>
-                  ) : (
-                    <li id="empty" />
-                  )}
+                  <li>{that.props.items[j].name}</li>
+                  <li>${that.props.items[j].price}</li>
+                  <li>Voided</li>
                 </ul>
               );
               continue;
             }
             unvoidedItems.push(
               <ul key={orderedItems[i].id} className="item-information">
-                <li>{this.props.items[j].name}</li>
-                <li>${this.props.items[j].price}</li>
+                <li>{that.props.items[j].name}</li>
+                <li>${that.props.items[j].price}</li>
                 {orderedItems[i].voided === false && status === "open" ? (
                   <li>
                     <button
                       className="void-item-button"
                       onClick={() =>
-                        this.handleVoidItem(this.props.checkId, items[i].id)
+                        this.handleVoidItem(this.props.checkId, orderedItems[i].id)
                       }
                     >
                       Void This Item
