@@ -1,12 +1,10 @@
-html{
+html {
   min-height: 100%;
-  background: linear-gradient(to right, #E3D5CB, #AD6230);
+  background: linear-gradient(to right, #e3d5cb, #ad6230);
 }
 
 .app {
-  /* display: flex; */
-  /* justify-content: center; */
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .tables-header {
@@ -33,7 +31,7 @@ html{
   max-width: 700px;
 }
 
- /* Index Item */
+/* Index Item */
 
 .index-item-container {
   display: flex;
@@ -55,14 +53,14 @@ html{
   font-size: 50px;
   font-weight: bold;
   padding-top: 45px;
-  color: #D67739
+  color: #d67739;
 }
 
 .index-item:hover {
   cursor: pointer;
-  color: #A46943;
-  background: url('../images/wood_hover.png');
+  color: #a46943;
+  background: url("../images/wood_hover.png");
   border: 3px solid #976443;
-  transition: all .4s ease;
-  -webkit-transition: all .4s ease;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
 }

@@ -1,10 +1,6 @@
 .footer-container {
   height: 150px;
-  background: linear-gradient(
-    to right,
-    #e3d5cb,
-    #ad6230
-  );
+  background: linear-gradient(to right, #e3d5cb, #ad6230);
   margin-top: 50px;
   color: #daddf5;
 }
