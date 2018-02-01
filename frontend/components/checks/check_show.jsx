@@ -1,6 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import ItemIndexContainer from "../items/items_index_container";
+import { CheckShowItem } from "./check_show_item";
 
 class CheckShow extends React.Component {
   constructor(props) {
@@ -9,12 +10,13 @@ class CheckShow extends React.Component {
     this.fetchCheck = this.props.fetchCheck;
     this.fetchItems = this.props.fetchItems;
     this.voidItemOnCheck = this.props.voidItemOnCheck;
+    this.handleVoidItem = this.handleVoidItem.bind(this);
     this.tableId = this.props.tableId;
     this.toggleModal = this.toggleModal.bind(this);
     this.createCheckItemList = this.createCheckItemList.bind(this);
     this.handleCloseCheck = this.handleCloseCheck.bind(this);
     this.closeCheck = this.props.closeCheck;
-    this.order = this.order.bind(this);
+    this.orderItems = this.orderItems.bind(this);
   }
 
   componentDidMount() {
@@ -52,12 +54,11 @@ class CheckShow extends React.Component {
     }
   }
 
-  order(items) {
-    // debugger
+  orderItems(items) {
+    // returns items sorted according to date created
     if (items === undefined) {
       return null;
     }
-    // debugger
     let times = items.map(item => item.dateCreated);
     let timesSorted = times.sort().reverse();
     let sortedItems = [];
@@ -68,8 +69,7 @@ class CheckShow extends React.Component {
         }
       }
     }
-    // debugger
-    return sortedItems
+    return sortedItems;
   }
 
   createCheckItemList(items, status) {
@@ -80,7 +80,7 @@ class CheckShow extends React.Component {
     if (items === undefined) {
       return undefined;
     } else {
-      orderedItems = this.order(items);
+      orderedItems = this.orderItems(items);
       unvoidedItems = [];
       voidItems = [];
       for (let i = 0; i < items.length; i++) {
@@ -88,34 +88,27 @@ class CheckShow extends React.Component {
           if (orderedItems[i].itemId === this.props.items[j].id) {
             if (orderedItems[i].voided === true) {
               voidItems.push(
-                <ul key={orderedItems[i].id} className="item-information">
-                  <li>{that.props.items[j].name}</li>
-                  <li>${that.props.items[j].price}</li>
-                  <li>Voided</li>
-                </ul>
+                <CheckShowItem
+                  voided={true}
+                  checkId={this.props.checkId}
+                  orderedItem={orderedItems[i]}
+                  name={that.props.items[j].name}
+                  price={that.props.items[j].price}
+                />
               );
-              continue;
+            } else {
+              unvoidedItems.push(
+                <CheckShowItem
+                  voided={false}
+                  status={status}
+                  handleVoidItem={this.handleVoidItem}
+                  checkId={this.props.checkId}
+                  orderedItem={orderedItems[i]}
+                  name={that.props.items[j].name}
+                  price={that.props.items[j].price}
+                />
+              );
             }
-            unvoidedItems.push(
-              <ul key={orderedItems[i].id} className="item-information">
-                <li>{that.props.items[j].name}</li>
-                <li>${that.props.items[j].price}</li>
-                {orderedItems[i].voided === false && status === "open" ? (
-                  <li>
-                    <button
-                      className="void-item-button"
-                      onClick={() =>
-                        this.handleVoidItem(this.props.checkId, orderedItems[i].id)
-                      }
-                    >
-                      Void This Item
-                    </button>
-                  </li>
-                ) : (
-                  <li id="empty" />
-                )}
-              </ul>
-            );
           }
         }
       }

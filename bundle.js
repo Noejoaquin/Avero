@@ -46846,6 +46846,8 @@ var _items_index_container = __webpack_require__(234);
 
 var _items_index_container2 = _interopRequireDefault(_items_index_container);
 
+var _check_show_item = __webpack_require__(242);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -46866,12 +46868,13 @@ var CheckShow = function (_React$Component) {
     _this.fetchCheck = _this.props.fetchCheck;
     _this.fetchItems = _this.props.fetchItems;
     _this.voidItemOnCheck = _this.props.voidItemOnCheck;
+    _this.handleVoidItem = _this.handleVoidItem.bind(_this);
     _this.tableId = _this.props.tableId;
     _this.toggleModal = _this.toggleModal.bind(_this);
     _this.createCheckItemList = _this.createCheckItemList.bind(_this);
     _this.handleCloseCheck = _this.handleCloseCheck.bind(_this);
     _this.closeCheck = _this.props.closeCheck;
-    _this.order = _this.order.bind(_this);
+    _this.orderItems = _this.orderItems.bind(_this);
     return _this;
   }
 
@@ -46922,13 +46925,12 @@ var CheckShow = function (_React$Component) {
       }
     }
   }, {
-    key: "order",
-    value: function order(items) {
-      // debugger
+    key: "orderItems",
+    value: function orderItems(items) {
+      // returns items sorted according to date created
       if (items === undefined) {
         return null;
       }
-      // debugger
       var times = items.map(function (item) {
         return item.dateCreated;
       });
@@ -46941,14 +46943,11 @@ var CheckShow = function (_React$Component) {
           }
         }
       }
-      // debugger
       return sortedItems;
     }
   }, {
     key: "createCheckItemList",
     value: function createCheckItemList(items, status) {
-      var _this4 = this;
-
       var orderedItems = void 0;
       var unvoidedItems = void 0;
       var voidItems = void 0;
@@ -46956,71 +46955,33 @@ var CheckShow = function (_React$Component) {
       if (items === undefined) {
         return undefined;
       } else {
-        orderedItems = this.order(items);
+        orderedItems = this.orderItems(items);
         unvoidedItems = [];
         voidItems = [];
-
-        var _loop = function _loop(i) {
-          for (var j = 0; j < _this4.props.items.length; j++) {
-            if (orderedItems[i].itemId === _this4.props.items[j].id) {
+        for (var i = 0; i < items.length; i++) {
+          for (var j = 0; j < this.props.items.length; j++) {
+            if (orderedItems[i].itemId === this.props.items[j].id) {
               if (orderedItems[i].voided === true) {
-                voidItems.push(_react2.default.createElement(
-                  "ul",
-                  { key: orderedItems[i].id, className: "item-information" },
-                  _react2.default.createElement(
-                    "li",
-                    null,
-                    that.props.items[j].name
-                  ),
-                  _react2.default.createElement(
-                    "li",
-                    null,
-                    "$",
-                    that.props.items[j].price
-                  ),
-                  _react2.default.createElement(
-                    "li",
-                    null,
-                    "Voided"
-                  )
-                ));
-                continue;
+                voidItems.push(_react2.default.createElement(_check_show_item.CheckShowItem, {
+                  voided: true,
+                  checkId: this.props.checkId,
+                  orderedItem: orderedItems[i],
+                  name: that.props.items[j].name,
+                  price: that.props.items[j].price
+                }));
+              } else {
+                unvoidedItems.push(_react2.default.createElement(_check_show_item.CheckShowItem, {
+                  voided: false,
+                  status: status,
+                  handleVoidItem: this.handleVoidItem,
+                  checkId: this.props.checkId,
+                  orderedItem: orderedItems[i],
+                  name: that.props.items[j].name,
+                  price: that.props.items[j].price
+                }));
               }
-              unvoidedItems.push(_react2.default.createElement(
-                "ul",
-                { key: orderedItems[i].id, className: "item-information" },
-                _react2.default.createElement(
-                  "li",
-                  null,
-                  that.props.items[j].name
-                ),
-                _react2.default.createElement(
-                  "li",
-                  null,
-                  "$",
-                  that.props.items[j].price
-                ),
-                orderedItems[i].voided === false && status === "open" ? _react2.default.createElement(
-                  "li",
-                  null,
-                  _react2.default.createElement(
-                    "button",
-                    {
-                      className: "void-item-button",
-                      onClick: function onClick() {
-                        return _this4.handleVoidItem(_this4.props.checkId, orderedItems[i].id);
-                      }
-                    },
-                    "Void This Item"
-                  )
-                ) : _react2.default.createElement("li", { id: "empty" })
-              ));
             }
           }
-        };
-
-        for (var i = 0; i < items.length; i++) {
-          _loop(i);
         }
       }
       unvoidedItems.push(voidItems);
@@ -47029,7 +46990,7 @@ var CheckShow = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this4 = this;
 
       if (this.props.check === undefined) {
         return null;
@@ -47124,7 +47085,7 @@ var CheckShow = function (_React$Component) {
                 {
                   className: "close-check-button-show",
                   onClick: function onClick() {
-                    return _this5.handleCloseCheck(_this5.props.checkId);
+                    return _this4.handleCloseCheck(_this4.props.checkId);
                   }
                 },
                 "Close Check"
@@ -47645,6 +47606,106 @@ var CheckIndexItem = exports.CheckIndexItem = function CheckIndexItem(_ref) {
           close
         )
       )
+    );
+  }
+};
+
+/***/ }),
+/* 242 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CheckShowItem = undefined;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+{
+  status === "open" ? _react2.default.createElement(
+    "li",
+    null,
+    _react2.default.createElement(
+      "button",
+      {
+        className: "void-item-button",
+        onClick: function onClick() {
+          return handleVoidItem(checkId, orderedItem.id);
+        }
+      },
+      "Void This Item"
+    )
+  ) : _react2.default.createElement("li", { id: "empty" });
+}
+
+var CheckShowItem = exports.CheckShowItem = function CheckShowItem(_ref) {
+  var status = _ref.status,
+      voided = _ref.voided,
+      checkId = _ref.checkId,
+      orderedItem = _ref.orderedItem,
+      name = _ref.name,
+      price = _ref.price,
+      handleVoidItem = _ref.handleVoidItem;
+
+  if (voided) {
+    return _react2.default.createElement(
+      "ul",
+      { key: orderedItem.id, className: "item-information" },
+      _react2.default.createElement(
+        "li",
+        null,
+        name
+      ),
+      _react2.default.createElement(
+        "li",
+        null,
+        "$",
+        price
+      ),
+      _react2.default.createElement(
+        "li",
+        null,
+        "Voided"
+      )
+    );
+  } else {
+    return _react2.default.createElement(
+      "ul",
+      { key: orderedItem.id, className: "item-information" },
+      _react2.default.createElement(
+        "li",
+        null,
+        name
+      ),
+      _react2.default.createElement(
+        "li",
+        null,
+        "$",
+        price
+      ),
+      status === "open" ? _react2.default.createElement(
+        "li",
+        null,
+        _react2.default.createElement(
+          "button",
+          {
+            className: "void-item-button",
+            onClick: function onClick() {
+              return handleVoidItem(checkId, orderedItem.id);
+            }
+          },
+          "Void This Item"
+        )
+      ) : _react2.default.createElement("li", { id: "empty" })
     );
   }
 };
