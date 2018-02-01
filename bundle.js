@@ -4452,10 +4452,6 @@ var _root = __webpack_require__(188);
 
 var _root2 = _interopRequireDefault(_root);
 
-var _table_actions = __webpack_require__(16);
-
-var _item_actions = __webpack_require__(22);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener("DOMContentLoaded", function () {
