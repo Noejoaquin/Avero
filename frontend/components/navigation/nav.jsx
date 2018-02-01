@@ -15,7 +15,7 @@ export const NavBar = ({ path, ownProps }) => {
     );
   return (
     <div className="nav-container">
-      <h1 className="nav-header">LARAVAL</h1>
+      <h1 className="nav-header">EDESIA</h1>
       {linkToTables}
     </div>
   );

@@ -46912,7 +46912,6 @@ var CheckShow = function (_React$Component) {
                 voidItems.push(_react2.default.createElement(_check_show_item.CheckShowItem, {
                   key: orderedItems[i].id,
                   voided: true,
-                  checkId: this.props.checkId,
                   orderedItem: orderedItems[i],
                   name: that.props.items[j].name,
                   price: that.props.items[j].price
@@ -47478,7 +47477,7 @@ var NavBar = exports.NavBar = function NavBar(_ref) {
     _react2.default.createElement(
       "h1",
       { className: "nav-header" },
-      "LARAVAL"
+      "EDESIA"
     ),
     linkToTables
   );

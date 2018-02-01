@@ -97,7 +97,6 @@ class CheckShow extends React.Component {
                 <CheckShowItem
                   key={orderedItems[i].id}
                   voided={true}
-                  checkId={this.props.checkId}
                   orderedItem={orderedItems[i]}
                   name={that.props.items[j].name}
                   price={that.props.items[j].price}
