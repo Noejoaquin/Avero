@@ -16,10 +16,19 @@ const mapStateToProps = (state, ownProps) => {
   let tableId = ownProps.location.pathname.split("/")[2];
   let errors = state.errors.checks;
   let items = state.entities.items;
+  let tables = state.entities.tables;
+  let table;
+  let number;
+  if (tables instanceof Array) {
+    // will send the correct table and table number once tables are in state
+    table = tables.filter(table => table.id === tableId);
+    number = table[0].number;
+  }
   return {
     check,
     checkId,
-    items
+    items,
+    number
   };
 };
 

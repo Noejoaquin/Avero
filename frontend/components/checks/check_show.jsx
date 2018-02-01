@@ -12,7 +12,6 @@ class CheckShow extends React.Component {
     this.fetchItems = this.props.fetchItems;
     this.voidItemOnCheck = this.props.voidItemOnCheck;
     this.handleVoidItem = this.handleVoidItem.bind(this);
-    this.tableId = this.props.tableId;
     this.toggleModal = this.toggleModal.bind(this);
     this.createCheckItemList = this.createCheckItemList.bind(this);
     this.handleCloseCheck = this.handleCloseCheck.bind(this);
@@ -138,11 +137,11 @@ class CheckShow extends React.Component {
         return (
           <CheckShowHelper
             key={this.props.check.id}
+            tableNumber={this.props.number}
             status={"closed"}
             tip={this.props.check.tip}
             tax={this.props.check.tax}
             checkId={this.props.check.id}
-            tableId={this.props.check.tableId}
             orderedItems={orderedItems}
           />
         );
@@ -154,11 +153,11 @@ class CheckShow extends React.Component {
         return (
           <CheckShowHelper
             key={this.props.check.id}
+            tableNumber={this.props.number}
             status={"open"}
             toggleModal={this.toggleModal}
             handleCloseCheck={this.handleCloseCheck}
             orderedItems={orderedItems}
-            tableId={this.props.check.tableId}
             checkId={this.props.check.id}
           />
         );

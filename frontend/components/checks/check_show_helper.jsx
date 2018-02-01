@@ -4,11 +4,11 @@ import ItemIndexContainer from "../items/items_index_container";
 
 export const CheckShowHelper = ({
   status,
+  tableNumber,
   toggleModal,
   handleCloseCheck,
   orderedItems,
   checkId,
-  tableId,
   tip,
   tax
 }) => {
@@ -16,8 +16,8 @@ export const CheckShowHelper = ({
     return (
       <div id={status} key={checkId} className="check-index-item-show">
         <ul className="basic-check-info-list">
-          <li className="check-id">Check ID: {checkId}</li>
-          <li className="check-table-id">Check Table ID: {tableId}</li>
+          <li className="check-id">Check: {checkId}</li>
+          <li className="check-table-id">Table: {tableNumber}</li>
           <li className="check-status ">
             Check Status:{" "}
             <span className="open">
@@ -54,8 +54,8 @@ export const CheckShowHelper = ({
     return (
       <div className="check-index-item-show">
         <ul className="basic-check-info-list">
-          <li className="check-id">Check ID: {checkId}</li>
-          <li className="check-table-id">Check Table ID: {tableId}</li>
+          <li className="check-id">Check: {checkId}</li>
+          <li className="check-table-id">Table: {tableNumber}</li>
           <li className="check-status ">
             Check Status:{" "}
             <span className="closed">

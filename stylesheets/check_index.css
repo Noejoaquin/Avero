@@ -12,7 +12,7 @@
 
 .create-check {
   margin: 0 auto;
-  margin-bottom: 15px;
+  margin-bottom: 27px;
   font-size: 20px;
   color: #424fa8;
   border-bottom: 2px solid #424fa8;
@@ -45,7 +45,22 @@
   padding: 2px;
 }
 
+.OPEN {
+  margin-left: 4px;
+  color: #1fb844;
+}
+.status {
+  display: flex;
+}
+
+.CLOSED {
+  margin-left: 4px;
+  color: #bf0c0c;
+}
+
 .first-line {
+  /* display: flex;
+  justify-content: center; */
   padding-bottom: 2px;
 }
 
@@ -59,15 +74,15 @@
 }
 
 .close-check-button {
-  border: 1px solid #B5B7C7;
+  border: 1px solid #b5b7c7;
   padding: 4px;
   color: #bf0c0c;
 }
 
 .close-check-button:hover {
-  color: #daddf5 ;
+  color: #daddf5;
   background-color: #bf0c0c;
-  border: 1px solid #B5B7C7;
+  border: 1px solid #b5b7c7;
   transition: all 0.4s ease;
   -webkit-transition: all 0.4s ease;
 }
@@ -83,7 +98,6 @@
   transition: all 0.4s ease;
   -webkit-transition: all 0.4s ease;
 }
-
 
 .index-show-container {
   display: flex;

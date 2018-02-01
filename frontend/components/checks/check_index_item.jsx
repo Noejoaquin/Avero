@@ -9,17 +9,24 @@ export const CheckIndexItem = ({
   close,
   dateCreated
 }) => {
-  let date = new Date(dateCreated).toString().split("-")[0];
+  let moment = require("moment");
+  let day = moment(new Date(dateCreated), "MM-DD-YYY").format("YYYY-MM-DD");
+  let time = moment(new Date(dateCreated), "HH:mm").format("hh:mm a");
+  let date = day + " " + time;
+  debugger;
   if (checkId === path.split("/")[4]) {
     // checks to see if current path is same as this particular index item
     return (
       <div id={status} className="check-index-item">
         <div className="check">
-          <li className="first-line">Check ID: {checkId}</li>
+          <li className="first-line">Check: {checkId}</li>
           <li>Date Created: {date}</li>
         </div>
         <div>
-          <li className="first-line">Status: {status}</li>
+          <li className="first-line status">
+            <li>Status:</li>
+            <li className={status}>{status}</li>
+          </li>
           {close}
         </div>
       </div>
@@ -29,11 +36,14 @@ export const CheckIndexItem = ({
       <Link to={`/tables/${tableId}/checks/${checkId}`}>
         <div id={status} className="check-index-item">
           <div className="check">
-            <li className="first-line">Check ID: {checkId}</li>
+            <li className="first-line">Check: {checkId}</li>
             <li>Date Created: {date}</li>
           </div>
           <div>
-            <li className="first-line">Status: {status}</li>
+            <li className="first-line status">
+              <li>Status:</li>
+              <li className={status}>{status}</li>
+            </li>
             {close}
           </div>
         </div>

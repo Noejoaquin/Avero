@@ -36,7 +36,7 @@
 }
 
 .add-item-button {
-  border: 1px solid #B5B7C7;
+  border: 1px solid #b5b7c7;
   padding: 5px;
   margin-left: 33px;
   color: #424fa8;
@@ -80,6 +80,7 @@
 
 .closed-check-details {
   margin-left: 50px;
+  margin-bottom: 10px;
   color: #bf0c0c;
 }
 
