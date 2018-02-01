@@ -1,47 +1,49 @@
 .basic-check-info-list {
   margin-top: 10px;
-  color: #424FA8;
+  color: #424fa8;
 }
 
 .basic-check-info-list li {
   margin-bottom: 5px;
 }
 
-.check-id, .check-table-id, .check-status {
+.check-id,
+.check-table-id,
+.check-status {
   display: flex;
   justify-content: center;
 }
 
-.close-check-button-show{
+.close-check-button-show {
   margin: 0 auto;
-  color: #BF0C0C;
+  color: #bf0c0c;
 }
 
 .close-check-button-show:hover {
-  color: #424FA8;
-  transition: all .4s ease;
-  -webkit-transition: all .4s ease;
+  color: #424fa8;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
 }
 
 .add-item-button {
   border: 1px solid #686970;
   padding: 4px;
   margin-left: 33px;
-  color: #424FA8;
+  color: #424fa8;
 }
 
 .add-item-button:hover {
-  background-color: #8292F7;
-  color: #DADDF5;
-  transition: all .4s ease;
-  -webkit-transition: all .4s ease;
+  background-color: #8292f7;
+  color: #daddf5;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
 }
 
 .ordered-items-list ul {
   display: flex;
   justify-content: center;
   width: 100%;
-  border-spacing:.5em;
+  border-spacing: 0.5em;
 }
 
 .closed-check-items {
@@ -49,28 +51,28 @@
 }
 
 .item-information {
-  color: #424FA8;
+  color: #424fa8;
 }
 .item-information li {
-  padding:1em;
-  width:24%;
+  padding: 1em;
+  width: 24%;
 }
 
 .void-item-button {
-  color: #BF0C0C;
+  color: #bf0c0c;
 }
 
 .void-item-button:hover {
-  color: #424FA8;
-  transition: all .4s ease;
-  -webkit-transition: all .4s ease;
+  color: #424fa8;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
 }
 
 .closed-check-details {
   margin-left: 50px;
-  color: #BF0C0C;
+  color: #bf0c0c;
 }
 
-.closed-check-details li{
+.closed-check-details li {
   padding: 10px;
 }

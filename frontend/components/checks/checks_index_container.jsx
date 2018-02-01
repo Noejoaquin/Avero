@@ -9,7 +9,7 @@ import {
 } from "../../actions/check_actions";
 import { fetchTables } from "../../actions/table_actions";
 
-const getChecks = (timesSorted, checksUnordered, times) => {
+const checksSortedByTime = (timesSorted, checksUnordered, times) => {
   let checks = [];
   for (let i = 0; i < timesSorted.length; i++) {
     for (let j = 0; j < timesSorted.length; j++) {
@@ -31,11 +31,12 @@ const mapStateToProps = (state, ownProps) => {
   let checksUnordered = allChecks.filter(check => check.tableId === tableId);
   let times = checksUnordered.map(check => check.dateCreated);
   let timesSorted = times.sort().reverse();
-  let checks = getChecks(timesSorted, checksUnordered, times); // will return checks in order of time created
+  let checks = checksSortedByTime(timesSorted, checksUnordered, times); // will return checks in order of time created
   let tables = state.entities.tables;
   let table;
   let number;
   if (tables instanceof Array) {
+    // will send the correct table and table number once tables are in state
     table = tables.filter(table => table.id === tableId);
     number = table[0].number;
   }

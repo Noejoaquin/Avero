@@ -4456,28 +4456,14 @@ var _table_actions = __webpack_require__(16);
 
 var _item_actions = __webpack_require__(22);
 
-var _check_actions = __webpack_require__(8);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
   var preloadedState = {};
   var store = (0, _store2.default)(preloadedState);
-  window.store = store;
-  window.dispatch = store.dispatch;
-  window.fetchTables = _table_actions.fetchTables;
-  window.fetchItems = _item_actions.fetchItems;
-  window.fetchChecks = _check_actions.fetchChecks;
-  window.fetchCheck = _check_actions.fetchCheck;
-  window.createCheck = _check_actions.createCheck;
-  window.addItemOnCheck = _check_actions.addItemOnCheck;
-  window.voidItemOnCheck = _check_actions.voidItemOnCheck;
-  window.closeCheck = _check_actions.closeCheck;
-  window.deleteChecks = _check_actions.deleteChecks;
-  var root = document.getElementById('root');
+  var root = document.getElementById("root");
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 });
-// import { fetchChecks } from './actions/check_actions'
 
 /***/ }),
 /* 82 */
@@ -22549,12 +22535,13 @@ var ChecksReducer = function ChecksReducer() {
       var checkObj = createObj(JSON.parse(action.checks));
       return checkObj; // we want every check id pointing to the check
     case _check_actions.RECEIVE_CHECK:
-      if (typeof action.check === 'string') {
+      if (typeof action.check === "string") {
         var check = JSON.parse(action.check);
         return (0, _merge4.default)({}, state, _defineProperty({}, check.checkId ? check.checkId : check.id, check));
       } else {
         var _check = action.check;
         return (0, _merge4.default)({}, state, _defineProperty({}, _check.id, _check));
+        // again, getting every actual checkId pointing to a check object
       }
     case _check_actions.REMOVE_CHECKS:
       return {};
@@ -22575,103 +22562,87 @@ exports.default = ChecksReducer;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var authKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMDE0NzViLWExNWYtNDA2OS1iODdiLTZmMThlZTgxZmNlZSIsIm5hbWUiOiJqdW5pb3IgIzEzIn0.Q1sjp9eoSGV2k3EU0-BylGYCgkqaXpT5Ti2CGbiVo98';
+var authKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYxMDE0NzViLWExNWYtNDA2OS1iODdiLTZmMThlZTgxZmNlZSIsIm5hbWUiOiJqdW5pb3IgIzEzIn0.Q1sjp9eoSGV2k3EU0-BylGYCgkqaXpT5Ti2CGbiVo98";
 
 var fetchChecks = exports.fetchChecks = function fetchChecks() {
   return $.ajax({
-    method: 'Get',
-    url: 'https://check-api.herokuapp.com/checks',
+    method: "Get",
+    url: "https://check-api.herokuapp.com/checks",
     headers: {
-      'Authorization': authKey
+      Authorization: authKey
     }
   });
 };
 
 var createCheck = exports.createCheck = function createCheck(tableId) {
   return $.ajax({
-    method: 'Post',
+    method: "Post",
     data: JSON.stringify({
-      'tableId': tableId
+      tableId: tableId
     }),
-    url: 'https://check-api.herokuapp.com/checks',
+    url: "https://check-api.herokuapp.com/checks",
     headers: {
-      'Authorization': authKey
+      Authorization: authKey
     },
-    dataType: 'json',
-    contentType: "application/json",
-    error: function error(e) {
-      console.log(e);
-    }
-
+    dataType: "json",
+    contentType: "application/json"
   });
 };
 
 var fetchCheck = exports.fetchCheck = function fetchCheck(id) {
   return $.ajax({
-    method: 'Get',
-    url: 'https://check-api.herokuapp.com/checks/' + id,
+    method: "Get",
+    url: "https://check-api.herokuapp.com/checks/" + id,
     headers: {
-      'Authorization': authKey
+      Authorization: authKey
     }
   });
 };
 
 var addItemOnCheck = exports.addItemOnCheck = function addItemOnCheck(id, itemId) {
   return $.ajax({
-    method: 'Put',
+    method: "Put",
     data: JSON.stringify({
-      'itemId': itemId
+      itemId: itemId
     }),
-    url: 'https://check-api.herokuapp.com/checks/' + id + '/addItem',
+    url: "https://check-api.herokuapp.com/checks/" + id + "/addItem",
     headers: {
-      'Authorization': authKey
-    },
-    error: function error(e) {
-      console.log(e);
+      Authorization: authKey
     }
   });
 };
 
 var voidItemOnCheck = exports.voidItemOnCheck = function voidItemOnCheck(id, orderedItemId) {
   return $.ajax({
-    method: 'Put',
+    method: "Put",
     data: JSON.stringify({
-      'orderedItemId': orderedItemId
+      orderedItemId: orderedItemId
     }),
-    url: 'https://check-api.herokuapp.com/checks/' + id + '/voidItem',
+    url: "https://check-api.herokuapp.com/checks/" + id + "/voidItem",
     headers: {
-      'Authorization': authKey
-    },
-    error: function error(e) {
-      console.log(e);
+      Authorization: authKey
     }
   });
 };
 
 var closeCheck = exports.closeCheck = function closeCheck(id) {
   return $.ajax({
-    method: 'Put',
+    method: "Put",
     data: JSON.stringify({}),
-    url: 'https://check-api.herokuapp.com/checks/' + id + '/close',
+    url: "https://check-api.herokuapp.com/checks/" + id + "/close",
     headers: {
-      'Authorization': authKey
-    },
-    error: function error(e) {
-      console.log(e);
+      Authorization: authKey
     }
   });
 };
 
 var deleteChecks = exports.deleteChecks = function deleteChecks() {
   return $.ajax({
-    method: 'Delete',
+    method: "Delete",
     data: JSON.stringify({}),
-    url: 'https://check-api.herokuapp.com/checks',
+    url: "https://check-api.herokuapp.com/checks",
     headers: {
-      'Authorization': authKey
-    },
-    error: function error(e) {
-      console.log(e);
+      Authorization: authKey
     }
   });
 };
@@ -24847,15 +24818,10 @@ var _check_errors_reducer = __webpack_require__(184);
 
 var _check_errors_reducer2 = _interopRequireDefault(_check_errors_reducer);
 
-var _table_errors_reducer = __webpack_require__(185);
-
-var _table_errors_reducer2 = _interopRequireDefault(_table_errors_reducer);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ErrorsReducer = (0, _redux.combineReducers)({
-  checks: _check_errors_reducer2.default,
-  tables: _table_errors_reducer2.default
+  checks: _check_errors_reducer2.default
 });
 
 exports.default = ErrorsReducer;
@@ -24890,35 +24856,7 @@ var CheckErrorsReducer = function CheckErrorsReducer() {
 exports.default = CheckErrorsReducer;
 
 /***/ }),
-/* 185 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _table_actions = __webpack_require__(16);
-
-var TableErrorsReducer = function TableErrorsReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var action = arguments[1];
-
-  switch (action.type) {
-    case _table_actions.RECEIVE_TABLE_ERRORS:
-      return action.errors;
-    case _table_actions.CLEAR_ERRORS:
-      return [];
-    default:
-      return state;
-  }
-};
-
-exports.default = TableErrorsReducer;
-
-/***/ }),
+/* 185 */,
 /* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29163,7 +29101,7 @@ var withRouter = function withRouter(Component) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _react = __webpack_require__(0);
@@ -29189,14 +29127,14 @@ var _footer = __webpack_require__(242);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
-    return _react2.default.createElement(
-        'div',
-        { className: 'app' },
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _nav_container2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _table_index_container2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/tables/:tableId/checks', component: _checks_index_container2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _footer.Footer })
-    );
+  return _react2.default.createElement(
+    "div",
+    { className: "app" },
+    _react2.default.createElement(_reactRouterDom.Route, { path: "/", component: _nav_container2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _table_index_container2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: "/tables/:tableId/checks", component: _checks_index_container2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: "/", component: _footer.Footer })
+  );
 };
 
 exports.default = App;
@@ -29298,34 +29236,35 @@ var TableIndex = function (_React$Component) {
   }
 
   _createClass(TableIndex, [{
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
       this.fetchTables();
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       var tables = void 0;
 
       if (!(0, _lodash.isEmpty)(this.props.tables)) {
+        // ensures that tables are in state
         tables = this.props.tables.map(function (table) {
           return _react2.default.createElement(_table_index_item.TableIndexItem, { key: table.id, id: table.id, number: table.number });
         });
       }
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
         _react2.default.createElement(
-          'h1',
-          { className: 'tables-header' },
-          'Tables'
+          "h1",
+          { className: "tables-header" },
+          "Tables"
         ),
         _react2.default.createElement(
-          'div',
-          { className: 'tables-container' },
+          "div",
+          { className: "tables-container" },
           _react2.default.createElement(
-            'ul',
-            { className: 'tables-list' },
+            "ul",
+            { className: "tables-list" },
             tables
           )
         )
@@ -46455,14 +46394,14 @@ var TableIndexItem = exports.TableIndexItem = function TableIndexItem(_ref) {
       number = _ref.number;
 
   return _react2.default.createElement(
-    'div',
-    { className: 'index-item-container' },
+    "div",
+    { className: "index-item-container" },
     _react2.default.createElement(
       _reactRouterDom.Link,
-      { to: 'tables/' + id + '/checks' },
+      { to: "tables/" + id + "/checks" },
       _react2.default.createElement(
-        'li',
-        { className: 'index-item' },
+        "li",
+        { className: "index-item" },
         number
       )
     )
@@ -46496,7 +46435,7 @@ var _table_actions = __webpack_require__(16);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var getChecks = function getChecks(timesSorted, checksUnordered, times) {
+var checksSortedByTime = function checksSortedByTime(timesSorted, checksUnordered, times) {
   var checks = [];
   for (var i = 0; i < timesSorted.length; i++) {
     for (var j = 0; j < timesSorted.length; j++) {
@@ -46522,11 +46461,12 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     return check.dateCreated;
   });
   var timesSorted = times.sort().reverse();
-  var checks = getChecks(timesSorted, checksUnordered, times); // will return checks in order of time created
+  var checks = checksSortedByTime(timesSorted, checksUnordered, times); // will return checks in order of time created
   var tables = state.entities.tables;
   var table = void 0;
   var number = void 0;
   if (tables instanceof Array) {
+    // will send the correct table and table number once tables are in state
     table = tables.filter(function (table) {
       return table.id === tableId;
     });
@@ -46647,7 +46587,7 @@ var CheckIndex = function (_React$Component) {
         var modal = document.getElementsByClassName("error-modal")[0];
         var button = document.getElementsByClassName("error-modal-button")[0];
         if (e.target == modal || e.target == button) {
-          modal.style.display = "none";
+          modal.style.display = "none"; // handles the closing of the modal
           that.props.clearErrors();
         }
       });
@@ -46776,9 +46716,9 @@ var _item_actions = __webpack_require__(22);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var checkId = ownProps.location.pathname.split('/')[4];
+  var checkId = ownProps.location.pathname.split("/")[4];
   var check = state.entities.checks[checkId];
-  var tableId = ownProps.location.pathname.split('/')[2];
+  var tableId = ownProps.location.pathname.split("/")[2];
   var errors = state.errors.checks;
   var items = state.entities.items;
   return {
@@ -46913,6 +46853,7 @@ var CheckShow = function (_React$Component) {
   }, {
     key: "toggleModal",
     value: function toggleModal() {
+      // handle the rendering of the modal
       var modal = document.getElementsByClassName("item-modal")[0];
       var button = document.getElementsByClassName("item-modal-button")[0];
       if (modal.classList.contains("showing")) {
@@ -46920,6 +46861,7 @@ var CheckShow = function (_React$Component) {
       } else {
         window.addEventListener("click", function (e) {
           if (e.target == modal || e.target == button) {
+            // when the modal will close
             modal.style.display = "none";
           }
         });
@@ -46950,6 +46892,8 @@ var CheckShow = function (_React$Component) {
   }, {
     key: "createCheckItemList",
     value: function createCheckItemList(items, status) {
+      // makes sure voided items are on the bottom of the check,
+      // and that newly added items will be prepended to the list
       var orderedItems = void 0;
       var unvoidedItems = void 0;
       var voidItems = void 0;
@@ -47200,19 +47144,22 @@ var ItemIndexItem = exports.ItemIndexItem = function ItemIndexItem(_ref) {
       checkId = _ref.checkId;
 
   return _react2.default.createElement(
-    'ul',
-    { onClick: function onClick() {
+    "ul",
+    {
+      onClick: function onClick() {
         return handleItemSelection(checkId, itemId);
-      }, className: 'item-index-item' },
+      },
+      className: "item-index-item"
+    },
     _react2.default.createElement(
-      'li',
-      { className: 'item-name' },
+      "li",
+      { className: "item-name" },
       name
     ),
     _react2.default.createElement(
-      'li',
-      { className: 'item-price' },
-      'Price: $',
+      "li",
+      { className: "item-price" },
+      "Price: $",
       price
     )
   );
@@ -47237,23 +47184,6 @@ var _react2 = _interopRequireDefault(_react);
 var _reactRouterDom = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-{
-  status === "open" ? _react2.default.createElement(
-    "li",
-    null,
-    _react2.default.createElement(
-      "button",
-      {
-        className: "void-item-button",
-        onClick: function onClick() {
-          return handleVoidItem(checkId, orderedItem.id);
-        }
-      },
-      "Void This Item"
-    )
-  ) : _react2.default.createElement("li", { id: "empty" });
-}
 
 var CheckShowItem = exports.CheckShowItem = function CheckShowItem(_ref) {
   var status = _ref.status,
@@ -47342,34 +47272,34 @@ var ErrorModal = exports.ErrorModal = function ErrorModal(_ref) {
   var description = _ref.description;
 
   return _react2.default.createElement(
-    'div',
-    { className: 'error-modal modal' },
+    "div",
+    { className: "error-modal modal" },
     _react2.default.createElement(
-      'div',
-      { className: 'modal-list exit-button-container exit-button-container-errors' },
+      "div",
+      { className: "modal-list exit-button-container exit-button-container-errors" },
       _react2.default.createElement(
-        'button',
-        { className: 'modal-list exit-modal-button error-modal-button' },
-        'X'
+        "button",
+        { className: "modal-list exit-modal-button error-modal-button" },
+        "X"
       )
     ),
     _react2.default.createElement(
-      'h1',
-      { className: 'modal-list modal-header error-modal-header' },
-      'Error!'
+      "h1",
+      { className: "modal-list modal-header error-modal-header" },
+      "Error!"
     ),
     _react2.default.createElement(
-      'ul',
-      { className: 'error-list modal-list' },
+      "ul",
+      { className: "error-list modal-list" },
       _react2.default.createElement(
-        'li',
-        { className: 'error-list-item' },
+        "li",
+        { className: "error-list-item" },
         description
       ),
       _react2.default.createElement(
-        'li',
-        { className: 'error-list-item' },
-        'Please Close the Currently Open Check If You Wish To Open A New One'
+        "li",
+        { className: "error-list-item" },
+        "Please Close the Currently Open Check If You Wish To Open A New One"
       )
     )
   );
@@ -47533,22 +47463,22 @@ var NavBar = exports.NavBar = function NavBar(_ref) {
       ownProps = _ref.ownProps;
 
   var returnToTable = function returnToTable() {
-    ownProps.history.push('/');
+    ownProps.history.push("/");
   };
-  var linkToTables = path === '/' ? _react2.default.createElement('li', null) : _react2.default.createElement(
-    'button',
+  var linkToTables = path === "/" ? _react2.default.createElement("li", null) : _react2.default.createElement(
+    "button",
     { onClick: function onClick() {
         return returnToTable();
-      }, className: 'nav-button' },
-    'Back To Tables'
+      }, className: "nav-button" },
+    "Back To Tables"
   );
   return _react2.default.createElement(
-    'div',
-    { className: 'nav-container' },
+    "div",
+    { className: "nav-container" },
     _react2.default.createElement(
-      'h1',
-      { className: 'nav-header' },
-      'LARAVAL'
+      "h1",
+      { className: "nav-header" },
+      "LARAVAL"
     ),
     linkToTables
   );
@@ -47641,129 +47571,120 @@ var CheckShowHelper = exports.CheckShowHelper = function CheckShowHelper(_ref) {
       tip = _ref.tip,
       tax = _ref.tax;
 
-  if (status === 'open') {
+  if (status === "open") {
     return _react2.default.createElement(
-      'div',
-      {
-        id: status,
-        key: checkId,
-        className: 'check-index-item-show'
-      },
+      "div",
+      { id: status, key: checkId, className: "check-index-item-show" },
       _react2.default.createElement(
-        'ul',
-        { className: 'basic-check-info-list' },
+        "ul",
+        { className: "basic-check-info-list" },
         _react2.default.createElement(
-          'li',
-          { className: 'check-id' },
-          'Check ID: ',
+          "li",
+          { className: "check-id" },
+          "Check ID: ",
           checkId
         ),
         _react2.default.createElement(
-          'li',
-          { className: 'check-table-id' },
-          'Check Table ID: ',
+          "li",
+          { className: "check-table-id" },
+          "Check Table ID: ",
           tableId
         ),
         _react2.default.createElement(
-          'li',
-          { className: 'check-status' },
-          'Check Status:',
-          " ",
-          status === 'open' ? "OPEN" : "CLOSED"
+          "li",
+          { className: "check-status" },
+          "Check Status: ",
+          status === "open" ? "OPEN" : "CLOSED"
         ),
         _react2.default.createElement(
-          'button',
+          "button",
           {
-            className: 'close-check-button-show',
+            className: "close-check-button-show",
             onClick: function onClick() {
               return handleCloseCheck(checkId);
             }
           },
-          'Close Check'
+          "Close Check"
         )
       ),
       _react2.default.createElement(
-        'div',
-        { className: 'item-container' },
+        "div",
+        { className: "item-container" },
         _react2.default.createElement(
-          'button',
-          { className: 'add-item-button', onClick: toggleModal },
-          'Add Item'
+          "button",
+          { className: "add-item-button", onClick: toggleModal },
+          "Add Item"
         ),
         _react2.default.createElement(
-          'div',
-          { className: 'item-modal' },
+          "div",
+          { className: "item-modal" },
           _react2.default.createElement(
-            'div',
-            { className: 'modal-list exit-button-container exit-button-container-items' },
+            "div",
+            { className: "modal-list exit-button-container exit-button-container-items" },
             _react2.default.createElement(
-              'button',
-              { className: 'modal-list exit-modal-button item-modal-button' },
-              'X'
+              "button",
+              { className: "modal-list exit-modal-button item-modal-button" },
+              "X"
             )
           ),
           _react2.default.createElement(
-            'h1',
-            { className: 'modal-list modal-header modal-list-header' },
-            'Menu Items'
+            "h1",
+            { className: "modal-list modal-header modal-list-header" },
+            "Menu Items"
           ),
           _react2.default.createElement(_items_index_container2.default, { checkId: checkId })
         )
       ),
       _react2.default.createElement(
-        'ul',
-        { className: 'ordered-items-list' },
+        "ul",
+        { className: "ordered-items-list" },
         orderedItems
       )
     );
   } else {
     return _react2.default.createElement(
-      'div',
-      {
-
-        className: 'check-index-item-show'
-      },
+      "div",
+      { className: "check-index-item-show" },
       _react2.default.createElement(
-        'ul',
-        { className: 'basic-check-info-list' },
+        "ul",
+        { className: "basic-check-info-list" },
         _react2.default.createElement(
-          'li',
-          { className: 'check-id' },
-          'Check ID: ',
+          "li",
+          { className: "check-id" },
+          "Check ID: ",
           checkId
         ),
         _react2.default.createElement(
-          'li',
-          { className: 'check-table-id' },
-          'Check Table ID: ',
+          "li",
+          { className: "check-table-id" },
+          "Check Table ID: ",
           tableId
         ),
         _react2.default.createElement(
-          'li',
-          { className: 'check-status' },
-          'Check Status:',
-          " ",
-          status === 'open' ? "OPEN" : "CLOSED"
+          "li",
+          { className: "check-status" },
+          "Check Status: ",
+          status === "open" ? "OPEN" : "CLOSED"
         )
       ),
       _react2.default.createElement(
-        'ul',
-        { className: 'ordered-items-list closed-check-items' },
+        "ul",
+        { className: "ordered-items-list closed-check-items" },
         orderedItems
       ),
       _react2.default.createElement(
-        'ul',
-        { className: 'closed-check-details' },
+        "ul",
+        { className: "closed-check-details" },
         _react2.default.createElement(
-          'li',
+          "li",
           null,
-          'Tip: ',
+          "Tip: ",
           tip
         ),
         _react2.default.createElement(
-          'li',
+          "li",
           null,
-          'Tax: ',
+          "Tax: ",
           tax
         )
       )

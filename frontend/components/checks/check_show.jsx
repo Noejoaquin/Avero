@@ -41,6 +41,7 @@ class CheckShow extends React.Component {
   }
 
   toggleModal() {
+    // handle the rendering of the modal
     let modal = document.getElementsByClassName("item-modal")[0];
     let button = document.getElementsByClassName("item-modal-button")[0];
     if (modal.classList.contains("showing")) {
@@ -48,6 +49,7 @@ class CheckShow extends React.Component {
     } else {
       window.addEventListener("click", function(e) {
         if (e.target == modal || e.target == button) {
+          // when the modal will close
           modal.style.display = "none";
         }
       });
@@ -74,6 +76,8 @@ class CheckShow extends React.Component {
   }
 
   createCheckItemList(items, status) {
+    // makes sure voided items are on the bottom of the check,
+    // and that newly added items will be prepended to the list
     let orderedItems;
     let unvoidedItems;
     let voidItems;
