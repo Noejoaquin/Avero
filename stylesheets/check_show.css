@@ -37,8 +37,9 @@
   -webkit-transition: all .4s ease;
 }
 
-.ordered-items-list {
-  display: table;
+.ordered-items-list ul {
+  display: flex;
+  justify-content: center;
   width: 100%;
   border-spacing:.5em;
 }
@@ -53,7 +54,6 @@
 .item-information li {
   padding:1em;
   width:24%;
-  display:table-cell;
 }
 
 .void-item-button {
