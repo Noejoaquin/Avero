@@ -13,7 +13,6 @@ export const CheckIndexItem = ({
   let day = moment(new Date(dateCreated), "MM-DD-YYY").format("YYYY-MM-DD");
   let time = moment(new Date(dateCreated), "HH:mm").format("hh:mm a");
   let date = day + " " + time;
-  debugger;
   if (checkId === path.split("/")[4]) {
     // checks to see if current path is same as this particular index item
     return (

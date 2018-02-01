@@ -91,7 +91,6 @@ class CheckShow extends React.Component {
         for (let j = 0; j < this.props.items.length; j++) {
           if (orderedItems[i].itemId === this.props.items[j].id) {
             if (orderedItems[i].voided === true) {
-              debugger;
               voidItems.push(
                 <CheckShowItem
                   key={orderedItems[i].id}

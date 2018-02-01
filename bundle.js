@@ -21784,7 +21784,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default, _reduxLogger2.default));
+  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 };
 
 exports.default = configureStore;
@@ -46918,7 +46918,6 @@ var CheckShow = function (_React$Component) {
           for (var j = 0; j < this.props.items.length; j++) {
             if (orderedItems[i].itemId === this.props.items[j].id) {
               if (orderedItems[i].voided === true) {
-                debugger;
                 voidItems.push(_react2.default.createElement(_check_show_item.CheckShowItem, {
                   key: orderedItems[i].id,
                   voided: true,
@@ -47346,7 +47345,6 @@ var CheckIndexItem = exports.CheckIndexItem = function CheckIndexItem(_ref) {
   var day = moment(new Date(dateCreated), "MM-DD-YYY").format("YYYY-MM-DD");
   var time = moment(new Date(dateCreated), "HH:mm").format("hh:mm a");
   var date = day + " " + time;
-  debugger;
   if (checkId === path.split("/")[4]) {
     // checks to see if current path is same as this particular index item
     return _react2.default.createElement(
