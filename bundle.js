@@ -46604,14 +46604,13 @@ var CheckIndex = function (_React$Component) {
     _this.fetchChecks = _this.props.fetchChecks;
     _this.closeCheck = _this.props.closeCheck;
     _this.tableId = _this.props.tableId;
-    _this.checks = _this.props.checks;
     _this.fetchTables = _this.props.fetchTables;
     _this.errors = _this.props.errors;
     _this.clearErrors = _this.props.clearErrors;
     _this.createCheck = _this.props.createCheck;
     _this.handleCreateCheck = _this.handleCreateCheck.bind(_this);
     _this.handleCloseCheck = _this.handleCloseCheck.bind(_this);
-    _this.renderErrorModal = _this.renderErrorModal.bind(_this);
+    _this.handleModal = _this.handleModal.bind(_this);
     _this.createCheckItem = _this.createCheckItem.bind(_this);
     return _this;
   }
@@ -46636,8 +46635,8 @@ var CheckIndex = function (_React$Component) {
       this.closeCheck(id);
     }
   }, {
-    key: "renderErrorModal",
-    value: function renderErrorModal() {
+    key: "handleModal",
+    value: function handleModal() {
       var that = this;
       window.addEventListener("click", function (e) {
         var modal = document.getElementsByClassName("error-modal")[0];
@@ -46658,6 +46657,7 @@ var CheckIndex = function (_React$Component) {
       var status = check.closed === false ? "OPEN" : "CLOSED";
       var close = void 0;
       if (status === "OPEN") {
+        // determines whether button should be present
         close = _react2.default.createElement(
           "li",
           null,
@@ -46672,8 +46672,6 @@ var CheckIndex = function (_React$Component) {
             "Close Check"
           )
         );
-      } else {
-        close = _react2.default.createElement("li", null);
       }
       return _react2.default.createElement(_check_index_item.CheckIndexItem, {
         key: check.id,
@@ -46692,21 +46690,21 @@ var CheckIndex = function (_React$Component) {
 
       var error = void 0;
       if (this.props.errors.Name) {
-        error = this.renderErrorModal(error);
+        error = this.handleModal(error); // sets logic for the modal
       }
 
       var checks = this.props.checks.map(function (check) {
-        return _this4.createCheckItem(check);
+        return _this4.createCheckItem(check); // returns an array of CheckIndexItems
       });
 
       if (checks.length === 0) {
+        // a small note for when there are no checks
         checks = _react2.default.createElement(
           "li",
           { className: "empty-check-list-note" },
           "There Are Currently No Checks For This Table"
         );
       }
-      // debugger
       return _react2.default.createElement(
         "div",
         { className: "check-index-container" },

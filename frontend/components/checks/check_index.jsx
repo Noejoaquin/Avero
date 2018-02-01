@@ -10,14 +10,13 @@ class CheckIndex extends React.Component {
     this.fetchChecks = this.props.fetchChecks;
     this.closeCheck = this.props.closeCheck;
     this.tableId = this.props.tableId;
-    this.checks = this.props.checks;
     this.fetchTables = this.props.fetchTables;
     this.errors = this.props.errors;
     this.clearErrors = this.props.clearErrors;
     this.createCheck = this.props.createCheck;
     this.handleCreateCheck = this.handleCreateCheck.bind(this);
     this.handleCloseCheck = this.handleCloseCheck.bind(this);
-    this.renderErrorModal = this.renderErrorModal.bind(this);
+    this.handleModal = this.handleModal.bind(this);
     this.createCheckItem = this.createCheckItem.bind(this);
   }
 
@@ -33,7 +32,7 @@ class CheckIndex extends React.Component {
     this.closeCheck(id);
   }
 
-  renderErrorModal() {
+  handleModal() {
     let that = this;
     window.addEventListener("click", function(e) {
       let modal = document.getElementsByClassName("error-modal")[0];
@@ -51,6 +50,7 @@ class CheckIndex extends React.Component {
     let status = check.closed === false ? "OPEN" : "CLOSED";
     let close;
     if (status === "OPEN") {
+      // determines whether button should be present
       close = (
         <li>
           <button
@@ -61,8 +61,6 @@ class CheckIndex extends React.Component {
           </button>
         </li>
       );
-    } else {
-      close = <li />;
     }
     return (
       <CheckIndexItem
@@ -80,21 +78,21 @@ class CheckIndex extends React.Component {
   render() {
     let error;
     if (this.props.errors.Name) {
-      error = this.renderErrorModal(error);
+      error = this.handleModal(error); // sets logic for the modal
     }
 
     let checks = this.props.checks.map(check => {
-      return this.createCheckItem(check);
+      return this.createCheckItem(check); // returns an array of CheckIndexItems
     });
 
     if (checks.length === 0) {
+      // a small note for when there are no checks
       checks = (
         <li className="empty-check-list-note">
           There Are Currently No Checks For This Table
         </li>
       );
     }
-    // debugger
     return (
       <div className="check-index-container">
         <h1 className="check-index-header">
