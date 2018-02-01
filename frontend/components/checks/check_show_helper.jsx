@@ -18,8 +18,11 @@ export const CheckShowHelper = ({
         <ul className="basic-check-info-list">
           <li className="check-id">Check ID: {checkId}</li>
           <li className="check-table-id">Check Table ID: {tableId}</li>
-          <li className="check-status">
-            Check Status: {status === "open" ? "OPEN" : "CLOSED"}
+          <li className="check-status ">
+            Check Status:{" "}
+            <span className="open">
+              {status === "open" ? "OPEN" : "CLOSED"}
+            </span>
           </li>
           <button
             className="close-check-button-show"
@@ -53,8 +56,11 @@ export const CheckShowHelper = ({
         <ul className="basic-check-info-list">
           <li className="check-id">Check ID: {checkId}</li>
           <li className="check-table-id">Check Table ID: {tableId}</li>
-          <li className="check-status">
-            Check Status: {status === "open" ? "OPEN" : "CLOSED"}
+          <li className="check-status ">
+            Check Status:{" "}
+            <span className="closed">
+              {status === "open" ? "OPEN" : "CLOSED"}
+            </span>
           </li>
         </ul>
         <ul className="ordered-items-list closed-check-items">

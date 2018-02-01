@@ -37,7 +37,7 @@
   display: flex;
   justify-content: space-around;
   width: 600px;
-  height: 50px;
+  height: 60px;
   border: 1px solid #686970;
   align-items: center;
   background-color: #daddf5;
@@ -59,9 +59,17 @@
 }
 
 .close-check-button {
-  border: 1px solid #686970;
-  padding: 2px;
+  border: 1px solid #B5B7C7;
+  padding: 4px;
   color: #bf0c0c;
+}
+
+.close-check-button:hover {
+  color: #daddf5 ;
+  background-color: #bf0c0c;
+  border: 1px solid #B5B7C7;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
 }
 
 .item-modal-button {
@@ -76,13 +84,6 @@
   -webkit-transition: all 0.4s ease;
 }
 
-.close-check-button:hover {
-  color: black;
-  background-color: #bf0c0c;
-  border: 1px solid #686970;
-  transition: all 0.4s ease;
-  -webkit-transition: all 0.4s ease;
-}
 
 .index-show-container {
   display: flex;

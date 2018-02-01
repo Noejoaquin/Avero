@@ -14,6 +14,16 @@
   justify-content: center;
 }
 
+.open {
+  margin-left: 2px;
+  color: #1fb844;
+}
+
+.closed {
+  margin-left: 2px;
+  color: #bf0c0c;
+}
+
 .close-check-button-show {
   margin: 0 auto;
   color: #bf0c0c;
@@ -26,8 +36,8 @@
 }
 
 .add-item-button {
-  border: 1px solid #686970;
-  padding: 4px;
+  border: 1px solid #B5B7C7;
+  padding: 5px;
   margin-left: 33px;
   color: #424fa8;
 }

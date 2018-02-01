@@ -47591,9 +47591,14 @@ var CheckShowHelper = exports.CheckShowHelper = function CheckShowHelper(_ref) {
         ),
         _react2.default.createElement(
           "li",
-          { className: "check-status" },
-          "Check Status: ",
-          status === "open" ? "OPEN" : "CLOSED"
+          { className: "check-status " },
+          "Check Status:",
+          " ",
+          _react2.default.createElement(
+            "span",
+            { className: "open" },
+            status === "open" ? "OPEN" : "CLOSED"
+          )
         ),
         _react2.default.createElement(
           "button",
@@ -47661,9 +47666,14 @@ var CheckShowHelper = exports.CheckShowHelper = function CheckShowHelper(_ref) {
         ),
         _react2.default.createElement(
           "li",
-          { className: "check-status" },
-          "Check Status: ",
-          status === "open" ? "OPEN" : "CLOSED"
+          { className: "check-status " },
+          "Check Status:",
+          " ",
+          _react2.default.createElement(
+            "span",
+            { className: "closed" },
+            status === "open" ? "OPEN" : "CLOSED"
+          )
         )
       ),
       _react2.default.createElement(
