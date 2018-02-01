@@ -83,11 +83,7 @@ class CheckShow extends React.Component {
       orderedItems = this.order(items);
       unvoidedItems = [];
       voidItems = [];
-      // debugger
       for (let i = 0; i < items.length; i++) {
-        if (orderedItems[i].voided === true && status === "closed") {
-          continue;
-        }
         for (let j = 0; j < this.props.items.length; j++) {
           if (orderedItems[i].itemId === this.props.items[j].id) {
             if (orderedItems[i].voided === true) {

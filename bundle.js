@@ -46496,11 +46496,25 @@ var _table_actions = __webpack_require__(16);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var getChecks = function getChecks(timesSorted, checksUnordered, times) {
+  var checks = [];
+  for (var i = 0; i < timesSorted.length; i++) {
+    for (var j = 0; j < timesSorted.length; j++) {
+      if (times[i] === checksUnordered[j].dateCreated) {
+        checks.push(checksUnordered[j]);
+      }
+    }
+  }
+  return checks;
+};
+
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var errors = state.errors.checks;
+  var path = ownProps.location.pathname;
+  var tableId = ownProps.location.pathname.split("/")[2];
   var allChecks = Object.keys(state.entities.checks).map(function (id) {
     return state.entities.checks[id];
   });
-  var tableId = ownProps.location.pathname.split('/')[2];
   var checksUnordered = allChecks.filter(function (check) {
     return check.tableId === tableId;
   });
@@ -46508,7 +46522,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     return check.dateCreated;
   });
   var timesSorted = times.sort().reverse();
-  var checks = [];
+  var checks = getChecks(timesSorted, checksUnordered, times); // will return checks in order of time created
   var tables = state.entities.tables;
   var table = void 0;
   var number = void 0;
@@ -46518,15 +46532,6 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     });
     number = table[0].number;
   }
-  for (var i = 0; i < timesSorted.length; i++) {
-    for (var j = 0; j < timesSorted.length; j++) {
-      if (times[i] === checksUnordered[j].dateCreated) {
-        checks.push(checksUnordered[j]);
-      }
-    }
-  }
-  var errors = state.errors.checks;
-  var path = ownProps.location.pathname;
   return {
     checks: checks,
     tableId: tableId,
@@ -46954,12 +46959,8 @@ var CheckShow = function (_React$Component) {
         orderedItems = this.order(items);
         unvoidedItems = [];
         voidItems = [];
-        // debugger
 
         var _loop = function _loop(i) {
-          if (orderedItems[i].voided === true && status === "closed") {
-            return "continue";
-          }
           for (var j = 0; j < _this4.props.items.length; j++) {
             if (orderedItems[i].itemId === _this4.props.items[j].id) {
               if (orderedItems[i].voided === true) {
@@ -47019,9 +47020,7 @@ var CheckShow = function (_React$Component) {
         };
 
         for (var i = 0; i < items.length; i++) {
-          var _ret = _loop(i);
-
-          if (_ret === "continue") continue;
+          _loop(i);
         }
       }
       unvoidedItems.push(voidItems);
@@ -47577,70 +47576,70 @@ var CheckIndexItem = exports.CheckIndexItem = function CheckIndexItem(_ref) {
       close = _ref.close,
       dateCreated = _ref.dateCreated;
 
-  var date = new Date(dateCreated).toString().split('-')[0];
-  if (checkId === path.split('/')[4]) {
+  var date = new Date(dateCreated).toString().split("-")[0];
+  if (checkId === path.split("/")[4]) {
+    // checks to see if current path is same as this particular index item
     return _react2.default.createElement(
-      'div',
-      { id: status, className: 'check-index-item' },
+      "div",
+      { id: status, className: "check-index-item" },
       _react2.default.createElement(
-        'div',
-        { className: 'check' },
+        "div",
+        { className: "check" },
         _react2.default.createElement(
-          'li',
-          { className: 'first-line' },
-          'Check ID: ',
+          "li",
+          { className: "first-line" },
+          "Check ID: ",
           checkId
         ),
         _react2.default.createElement(
-          'li',
+          "li",
           null,
-          'Date Created: ',
+          "Date Created: ",
           date
         )
       ),
       _react2.default.createElement(
-        'div',
+        "div",
         null,
         _react2.default.createElement(
-          'li',
-          { className: 'first-line' },
-          'Status: ',
+          "li",
+          { className: "first-line" },
+          "Status: ",
           status
         ),
         close
       )
     );
   } else {
-
     return _react2.default.createElement(
       _reactRouterDom.Link,
-      { to: '/tables/' + tableId + '/checks/' + checkId },
+      { to: "/tables/" + tableId + "/checks/" + checkId },
       _react2.default.createElement(
-        'div',
-        { id: status, className: 'check-index-item' },
+        "div",
+        { id: status, className: "check-index-item" },
         _react2.default.createElement(
-          'div',
-          { className: 'check' },
+          "div",
+          { className: "check" },
           _react2.default.createElement(
-            'li',
-            { className: 'first-line' },
-            'Check ID: ',
+            "li",
+            { className: "first-line" },
+            "Check ID: ",
             checkId
           ),
           _react2.default.createElement(
-            'li',
+            "li",
             null,
-            'Date Created: ',
+            "Date Created: ",
             date
           )
         ),
         _react2.default.createElement(
-          'div',
+          "div",
           null,
           _react2.default.createElement(
-            'li',
-            { className: 'first-line' },
-            'Status: ',
+            "li",
+            { className: "first-line" },
+            "Status: ",
             status
           ),
           close
