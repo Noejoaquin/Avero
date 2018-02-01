@@ -117,7 +117,7 @@ class CheckShow extends React.Component {
     return unvoidedItems;
   }
 
-  render() {
+  render() { /// FIX THIS 
     if (this.props.check === undefined) {
       return null;
     } else {
