@@ -34,8 +34,8 @@
   height: 19px;
   width: 14px;
   z-index: 1;
-  position: relative;
-  left: 475px;
+  margin-right: 64px;
+  margin-top: 10px;
 }
 
 @-webkit-keyframes animatetop {
