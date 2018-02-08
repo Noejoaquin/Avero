@@ -5,7 +5,7 @@ and check items. Have fun at the live site [here](https://noejoaquin.github.io/E
 
 ## Functionality
 
-Edesia implements a remote API to navigate through several tables, open checks for those tables, and add items to those checks. The user can add any amount of items to a single check, as well as void any item that has already been added to one. Users can then close the check. One check is allowed to be open per table.  
+Edesia accesses a remote API to navigate through several tables, open checks for those tables, and add items to those checks. The user can add any amount of items to a single check, as well as void any item that has already been added to one. Users can then easily close the check. There can only be one open check per table.  
 
 ## Technologies Used
 
