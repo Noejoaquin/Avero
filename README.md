@@ -1,7 +1,7 @@
 # Edesia
 
 Welcome to Edesia, a point of sale UI system facilitating navigation through tables, checks,
-and check items. Have fun at the live site [here](https://noejoaquin.github.io/Avero/#/)!
+and check items. Have fun at the live site [here](https://noejoaquin.github.io/Edesia/#/)!
 
 ## Technologies Used
 
